@@ -1,7 +1,8 @@
 #include "als.h"
 #include <stdio.h>
 
-int* lsearch(int* begin, int* end, int elem, comp comp) {
+int*
+lsearch(int* begin, int* end, void* elem, size_t elem_size, equator eq) {
   if (NULL == begin) {
     return NULL;
   }
@@ -14,13 +15,12 @@ int* lsearch(int* begin, int* end, int elem, comp comp) {
     return NULL;
   }
 
-  if (NULL == comp) {
+  if (NULL == eq) {
     return NULL;
   }
 
   while (begin != end) {
-    int cmpres = comp(*begin, elem);
-    if (cmpres == 0) {
+    if (eq(begin, elem, elem_size)) {
       return begin;
     }
 
