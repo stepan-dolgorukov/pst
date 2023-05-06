@@ -131,9 +131,85 @@ void test_removes() {
   std::cout << "Remove: OK" << '\n';
 }
 
+void test_merges() {
+  {
+    assert(INVALID_ARG == sll_merge(nullptr, nullptr));
+  }
+
+  {
+    struct sll_elem* head_first{nullptr};
+    assert(OK == sll_make_elem(&head_first, (void*)"Hello world", 12u));
+    assert(1u == sll_length(head_first));
+
+    struct sll_elem* head_second{nullptr};
+    assert(0u == sll_length(head_second));
+
+    assert(OK == sll_merge(head_first, head_second));
+    assert(1u == sll_length(head_first));
+  }
+
+  {
+    struct sll_elem* head_first{nullptr};
+    assert(OK == sll_make_elem(&head_first, (void*)"Hello world", 12u));
+    assert(1u == sll_length(head_first));
+
+    struct sll_elem* head_second{nullptr};
+    assert(OK == sll_make_elem(&head_second, (void*)"Privet mir", 11u));
+    assert(1u == sll_length(head_second));
+
+    assert(OK == sll_merge(head_first, head_second));
+    assert(2u == sll_length(head_first));
+  }
+
+  {
+    struct sll_elem* head_first{nullptr};
+
+    assert(OK == sll_make_elem(&head_first, (void*)"123", 3u));
+    assert(1u == sll_length(head_first));
+
+    sll_pushback_elem(head_first, (void*)"456", 3u);
+    assert(2u == sll_length(head_first));
+
+    sll_pushback_elem(head_first, (void*)"789", 3u);
+    assert(3u == sll_length(head_first));
+
+    sll_pushback_elem(head_first, (void*)"012", 3u);
+    assert(4u == sll_length(head_first));
+
+    sll_pushback_elem(head_first, (void*)"345", 3u);
+    assert(5u == sll_length(head_first));
+
+    sll_pushback_elem(head_first, (void*)"678", 3u);
+    assert(6u == sll_length(head_first));
+
+    sll_pushback_elem(head_first, (void*)"901", 3u);
+    assert(7u == sll_length(head_first));
+
+    struct sll_elem* head_second{nullptr};
+
+    assert(OK == sll_make_elem(&head_second, (void*)"456", 3u));
+    assert(1u == sll_length(head_second));
+
+    sll_pushback_elem(head_second, (void*)"789", 3u);
+    assert(2u == sll_length(head_second));
+
+    sll_pushback_elem(head_second, (void*)"012", 3u);
+    assert(3u == sll_length(head_second));
+
+    sll_pushback_elem(head_second, (void*)"345", 3u);
+    assert(4u == sll_length(head_second));
+
+    assert(OK == sll_merge(head_first, head_second));
+    assert(7u + 4u == sll_length(head_first));
+  }
+
+  std::cout << "Merge: OK" << '\n';
+}
+
 int main(void) {
   test_empty();
   test_one_elem();
   test_pushbacks();
   test_removes();
+  test_merges();
 }
