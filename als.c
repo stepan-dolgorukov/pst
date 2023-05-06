@@ -33,7 +33,7 @@ lsearch(int* begin, int* end, void* elem, size_t elem_size, equator eq) {
     ++begin;
   }
 
-  return NULL;
+  return end;
 }
 
 #ifdef __cplusplus
