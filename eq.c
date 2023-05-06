@@ -1,11 +1,5 @@
 #include "eq.h"
-
-#if defined(__cplusplus)
-#include <cstddef>
-extern "C" {
-#else
 #include <stddef.h>
-#endif
 
 int eq(void* left, void* right, size_t nbytes) {
   if (NULL == left || NULL == right) {
@@ -22,7 +16,3 @@ int eq(void* left, void* right, size_t nbytes) {
   }
   return 0u == nbytes;
 }
-
-#if defined(__cplusplus)
-}
-#endif

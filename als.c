@@ -1,11 +1,5 @@
 #include "als.h"
-
-#if defined(__cplusplus)
-#include <cstdio>
-extern "C" {
-#else
 #include <stdio.h>
-#endif
 
 void*
 lsearch(void* begin, void* end, void* elem, size_t elem_size, equator eq) {
@@ -35,7 +29,3 @@ lsearch(void* begin, void* end, void* elem, size_t elem_size, equator eq) {
 
   return end;
 }
-
-#ifdef __cplusplus
-}
-#endif
