@@ -60,6 +60,7 @@ sll_pushback_elem(struct sll_elem* head_elem, void* data, size_t sz) {
 
   elem->payload.data = data;
   elem->payload.sz = sz;
+  elem->next = NULL;
 
   head_elem->next = elem;
   return OK;
