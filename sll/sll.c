@@ -184,3 +184,16 @@ sll_length(struct sll_elem* head_elem) {
 
   return length;
 }
+
+int sll_merge(struct sll_elem* head_first, struct sll_elem* head_second) {
+  if (NULL == head_first) {
+    return INVALID_ARG;
+  }
+
+  while (NULL != head_first->next) {
+    head_first = head_first->next;
+  }
+
+  head_first->next = head_second;
+  return OK;
+}
