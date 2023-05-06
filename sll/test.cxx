@@ -1,8 +1,10 @@
-#include "sll.h"
-#include "assert.h"
-#include<iostream>
+#include <iostream>
 
-void test_empty() {
+#include "assert.h"
+#include "sll.h"
+
+void
+test_empty(void) {
   struct sll_elem* head{nullptr};
   assert(0u == sll_length(head));
   assert(INVALID_ARG == sll_remove_last(&head));
@@ -12,7 +14,8 @@ void test_empty() {
   std::cout << "Empty: OK" << '\n';
 }
 
-void test_one_elem() {
+void
+test_one_elem(void) {
   struct sll_elem* head{nullptr};
   char data[]{"Hello world"};
   assert(OK == sll_make_elem(&head, data, sizeof data));
@@ -22,14 +25,10 @@ void test_one_elem() {
   std::cout << "One element: OK" << '\n';
 }
 
-void test_pushbacks() {
-  const char* data[]{
-    "Hello world",
-    "Privet Mir",
-    "1 2 3 4 5",
-    "How are you",
-    NULL
-  };
+void
+test_pushbacks(void) {
+  const char* data[]{"Hello world", "Privet Mir", "1 2 3 4 5", "How are you",
+                     NULL};
 
   {
     struct sll_elem* head{nullptr};
@@ -64,14 +63,10 @@ void test_pushbacks() {
   std::cout << "Pushback: OK" << '\n';
 }
 
-void test_removes() {
-  const char* data[]{
-    "Hello world",
-    "Privet Mir",
-    "1 2 3 4 5",
-    "How are you",
-    NULL
-  };
+void
+test_removes(void) {
+  const char* data[]{"Hello world", "Privet Mir", "1 2 3 4 5", "How are you",
+                     NULL};
 
   {
     struct sll_elem* head{nullptr};
@@ -131,10 +126,9 @@ void test_removes() {
   std::cout << "Remove: OK" << '\n';
 }
 
-void test_merges() {
-  {
-    assert(INVALID_ARG == sll_merge(nullptr, nullptr));
-  }
+void
+test_merges(void) {
+  { assert(INVALID_ARG == sll_merge(nullptr, nullptr)); }
 
   {
     struct sll_elem* head_first{nullptr};
@@ -145,7 +139,7 @@ void test_merges() {
     assert(0u == sll_length(head_second));
 
     assert(OK == sll_merge(head_first, head_second));
-    assert(1u == sll_length(head_first));
+    assert(1u + 0u == sll_length(head_first));
   }
 
   {
@@ -158,7 +152,7 @@ void test_merges() {
     assert(1u == sll_length(head_second));
 
     assert(OK == sll_merge(head_first, head_second));
-    assert(2u == sll_length(head_first));
+    assert(1u + 1u == sll_length(head_first));
   }
 
   {
@@ -206,7 +200,8 @@ void test_merges() {
   std::cout << "Merge: OK" << '\n';
 }
 
-int main(void) {
+int
+main(void) {
   test_empty();
   test_one_elem();
   test_pushbacks();
