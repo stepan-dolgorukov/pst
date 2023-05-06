@@ -10,19 +10,19 @@ extern "C" {
 void*
 lsearch(void* begin, void* end, void* elem, size_t elem_size, equator eq) {
   if (NULL == begin) {
-    return NULL;
+    return end;
   }
 
   if (NULL == end) {
-    return NULL;
+    return end;
   }
 
   if (begin >= end) {
-    return NULL;
+    return end;
   }
 
   if (NULL == eq) {
-    return NULL;
+    return end;
   }
 
   while (begin != end) {
