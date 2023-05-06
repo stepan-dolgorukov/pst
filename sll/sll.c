@@ -29,6 +29,7 @@ sll_make_elem(struct sll_elem** elem, void* data, size_t sz) {
 
   (*elem)->payload.data = data;
   (*elem)->payload.sz = sz;
+  (*elem)->next = NULL;
 
   return OK;
 }
