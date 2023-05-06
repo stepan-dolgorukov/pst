@@ -2,6 +2,14 @@
 #include "assert.h"
 #include<iostream>
 
+void test_empty() {
+  struct sll_elem* head{nullptr};
+  assert(0u == sll_length(head));
+  assert(INVALID_ARG == sll_remove_last(&head));
+  assert(INVALID_ARG == sll_remove_last_n(&head, 1u));
+  assert(INVALID_ARG == sll_free(head));
+}
+
 void test_one_elem() {
   struct sll_elem* head{nullptr};
   char data[]{"Hello world"};
@@ -51,6 +59,7 @@ void test_pushbacks() {
 }
 
 int main(void) {
+  test_empty();
   test_one_elem();
   test_pushbacks();
 }
