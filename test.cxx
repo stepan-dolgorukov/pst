@@ -91,8 +91,46 @@ void test_strings(void) {
   std::cout << "Strings: OK" << '\n';
 }
 
+void test_arrays(void) {
+  constexpr size_t arrsz{4u};
+
+  unsigned data[][arrsz]{{0x9E5280E5, 0x82A67B89, 0x9F0A4675, 0x1DEB2AE5},
+                         {0x3F0455F7, 0x7089A716, 0xA9C2E47F, 0x965C1351}};
+
+  auto has{[begin = &data[0], end = &data[0] + 3](void* elem_to_search,
+                                                  size_t elem_size) {
+    void* found{lsearch(begin, end, elem_to_search, elem_size, eq)};
+    return end != found;
+  }};
+
+  {
+    unsigned elem_to_search[][arrsz]{0x9F0A4675, 0x1DEB2AE5, 0x3F0455F7,
+                                     0x7089A716};
+    assert(!has(elem_to_search, sizeof elem_to_search));
+  }
+
+  {
+    unsigned elem_to_search[][arrsz]{0x9F0A4675};
+    assert(has(elem_to_search, sizeof(unsigned)));
+  }
+
+  {
+    unsigned elem_to_search[][arrsz]{0x9E5280E5, 0x82A67B89, 0x9F0A4675,
+                                     0x1DEB2AE5};
+    assert(has(elem_to_search, sizeof elem_to_search));
+  }
+
+  {
+    unsigned elem_to_search[][arrsz]{0x3F0455F7, 0x7089A716, 0xA9C2E47F, 0x965C1351};
+    assert(has(elem_to_search, sizeof elem_to_search));
+  }
+
+  std::cout << "Arrays: OK" << '\n';
+}
+
 int
 main(void) {
   test_integers();
   test_strings();
+  test_arrays();
 }
