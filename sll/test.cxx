@@ -1,5 +1,6 @@
 #include "sll.h"
 #include "assert.h"
+#include<iostream>
 
 void test_one_elem() {
   struct sll_elem* head{nullptr};
@@ -8,6 +9,35 @@ void test_one_elem() {
   assert(OK == sll_free(head));
 }
 
+void test_pushbacks() {
+  const char* data[]{
+    "Hello world",
+    "Privet Mir",
+    "1 2 3 4 5",
+    "How are you",
+    NULL
+  };
+
+  {
+    struct sll_elem* head{nullptr};
+    assert(OK == sll_make_elem(&head, (void*)data[0], 12u));
+    assert(OK == sll_pushback_elem(head, (void*)data[1], 11u));
+    assert(OK == sll_pushback_elem(head, (void*)data[2], 10u));
+    assert(OK == sll_pushback_elem(head, (void*)data[3], 12u));
+    assert(OK == sll_free(head));
+  }
+
+  {
+    struct sll_elem* head{nullptr};
+    std::size_t sizes[]{11u, 10u, 12u};
+
+    assert(OK == sll_make_elem(&head, (void*)data[0], 12u));
+    assert(OK == sll_pushback_elems(head, (void**)(&data[1]), sizes));
+    assert(OK == sll_free(head));
+  }
+}
+
 int main(void) {
   test_one_elem();
+  test_pushbacks();
 }
