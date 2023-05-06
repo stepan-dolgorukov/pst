@@ -40,6 +40,9 @@ sll_print(struct sll_elem* head_elem);
 int
 sll_remove_last(struct sll_elem** head_elem);
 
+int
+sll_remove_last_n(struct sll_elem** head_elem, size_t nelems);
+
 #if defined(__cplusplus)
 }
 #endif

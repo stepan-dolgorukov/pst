@@ -149,3 +149,24 @@ int sll_remove_last(struct sll_elem** head_elem) {
 
   return OK;
 }
+
+int
+sll_remove_last_n(struct sll_elem** head_elem, size_t nelems) {
+  if (NULL == head_elem) {
+    return INVALID_ARG;
+  }
+
+  if (NULL == *head_elem) {
+    return INVALID_ARG;
+  }
+
+  if (0u == nelems) {
+    return INVALID_ARG;
+  }
+
+  while (nelems--) {
+    sll_remove_last(head_elem);
+  }
+
+  return OK;
+}
