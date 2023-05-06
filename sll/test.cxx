@@ -6,6 +6,7 @@ void test_one_elem() {
   struct sll_elem* head{nullptr};
   char data[]{"Hello world"};
   assert(OK == sll_make_elem(&head, data, sizeof data));
+  assert(1u == sll_length(head));
   assert(OK == sll_free(head));
 }
 
@@ -21,9 +22,17 @@ void test_pushbacks() {
   {
     struct sll_elem* head{nullptr};
     assert(OK == sll_make_elem(&head, (void*)data[0], 12u));
+    assert(1u == sll_length(head));
+
     assert(OK == sll_pushback_elem(head, (void*)data[1], 11u));
+    assert(2u == sll_length(head));
+
     assert(OK == sll_pushback_elem(head, (void*)data[2], 10u));
+    assert(3u == sll_length(head));
+
     assert(OK == sll_pushback_elem(head, (void*)data[3], 12u));
+    assert(4u == sll_length(head));
+
     assert(OK == sll_free(head));
   }
 
@@ -32,7 +41,11 @@ void test_pushbacks() {
     std::size_t sizes[]{11u, 10u, 12u};
 
     assert(OK == sll_make_elem(&head, (void*)data[0], 12u));
+    assert(1u == sll_length(head));
+
     assert(OK == sll_pushback_elems(head, (void**)(&data[1]), sizes));
+    assert(4u == sll_length(head));
+
     assert(OK == sll_free(head));
   }
 }
