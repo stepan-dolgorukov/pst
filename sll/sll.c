@@ -114,7 +114,8 @@ sll_print(struct sll_elem* head_elem) {
   while (NULL != head_elem) {
     printf("%p ", head_elem);
     for (size_t i = 0u; i < head_elem->payload.sz; ++i) {
-      printf("%X ", *((char*)head_elem->payload.data + i));
+      const char* data = (const char*)head_elem->payload.data;
+      printf("%X ", data[i]);
     }
 
     putchar('\n');
