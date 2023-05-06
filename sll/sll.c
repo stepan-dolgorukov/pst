@@ -126,7 +126,7 @@ int sll_remove_last(struct sll_elem* head_elem) {
     return INVALID_ARG;
   }
 
-  struct sll_elem* parent;
+  struct sll_elem* parent = NULL;
   while (NULL != head_elem->next) {
     parent = head_elem;
     head_elem = head_elem->next;
