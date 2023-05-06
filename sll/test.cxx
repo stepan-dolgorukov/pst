@@ -8,6 +8,8 @@ void test_empty() {
   assert(INVALID_ARG == sll_remove_last(&head));
   assert(INVALID_ARG == sll_remove_last_n(&head, 1u));
   assert(INVALID_ARG == sll_free(head));
+
+  std::cout << "Empty: OK" << '\n';
 }
 
 void test_one_elem() {
@@ -16,6 +18,8 @@ void test_one_elem() {
   assert(OK == sll_make_elem(&head, data, sizeof data));
   assert(1u == sll_length(head));
   assert(OK == sll_free(head));
+
+  std::cout << "One element: OK" << '\n';
 }
 
 void test_pushbacks() {
@@ -56,6 +60,8 @@ void test_pushbacks() {
 
     assert(OK == sll_free(head));
   }
+
+  std::cout << "Pushback: OK" << '\n';
 }
 
 void test_removes() {
@@ -121,6 +127,8 @@ void test_removes() {
 
     assert(INVALID_ARG == sll_free(head));
   }
+
+  std::cout << "Remove: OK" << '\n';
 }
 
 int main(void) {
