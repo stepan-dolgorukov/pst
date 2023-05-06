@@ -37,6 +37,9 @@ sll_free(struct sll_elem* head_elem);
 int
 sll_print(struct sll_elem* head_elem);
 
+int
+sll_remove_last(struct sll_elem** head_elem);
+
 #if defined(__cplusplus)
 }
 #endif
