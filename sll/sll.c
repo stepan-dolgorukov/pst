@@ -163,7 +163,7 @@ sll_remove_last_n(struct sll_elem** head_elem, size_t nelems) {
     return INVALID_ARG;
   }
 
-  if (0u == nelems) {
+  if (0u == nelems || sll_length(*head_elem) < nelems) {
     return INVALID_ARG;
   }
 
