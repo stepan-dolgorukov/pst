@@ -105,7 +105,8 @@ sll_free(struct sll_elem* head_elem) {
 int
 sll_print(struct sll_elem* head_elem) {
   if (NULL == head_elem) {
-    return INVALID_ARG;
+    printf("<Empty>\n");
+    return OK;
   }
 
   while (NULL != head_elem) {
