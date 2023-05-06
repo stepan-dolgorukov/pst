@@ -120,3 +120,19 @@ sll_print(struct sll_elem* head_elem) {
 
   return OK;
 }
+
+int sll_remove_last(struct sll_elem* head_elem) {
+  if (NULL == head_elem) {
+    return INVALID_ARG;
+  }
+
+  struct sll_elem* parent;
+  while (NULL != head_elem->next) {
+    parent = head_elem;
+    head_elem = head_elem->next;
+  }
+
+  parent->next = NULL;
+  free(head_elem);
+  return OK;
+}
