@@ -62,6 +62,28 @@ int sll_pushback_elem(struct sll_elem* head_elem, void* data, size_t sz) {
   return OK;
 }
 
+int sll_pushback_elems(struct sll_elem* head_elem, void** data, size_t* sizes) {
+  if (NULL == head_elem) {
+    return INVALID_ARG;
+  }
+
+  if (NULL == data) {
+    return INVALID_ARG;
+  }
+
+  if (NULL == sizes) {
+    return INVALID_ARG;
+  }
+
+  while (NULL != *data) {
+    sll_pushback_elem(head_elem, *data, *sizes);
+    ++data;
+    ++sizes;
+  }
+
+  return OK;
+}
+
 int sll_free(struct sll_elem* head_elem) {
   if (NULL == head_elem) {
     return INVALID_ARG;
