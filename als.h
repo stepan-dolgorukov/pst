@@ -10,8 +10,8 @@ extern "C" {
 
 typedef int (*equator)(void* left, void* right, size_t nbytes);
 
-int*
-lsearch(int* begin, int* end, void* elem, size_t elem_size, equator eq);
+void*
+lsearch(void* begin, void* end, void* elem, size_t elem_size, equator eq);
 
 #if defined(__cplusplus)
 }

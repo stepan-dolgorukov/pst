@@ -7,8 +7,8 @@ extern "C" {
 #include <stdio.h>
 #endif
 
-int*
-lsearch(int* begin, int* end, void* elem, size_t elem_size, equator eq) {
+void*
+lsearch(void* begin, void* end, void* elem, size_t elem_size, equator eq) {
   if (NULL == begin) {
     return NULL;
   }
