@@ -1,8 +1,10 @@
 #include "sll.h"
-#include <stdlib.h>
-#include <stdio.h>
 
-int sll_make_elem(struct sll_elem** elem, void* data, size_t sz) {
+#include <stdio.h>
+#include <stdlib.h>
+
+int
+sll_make_elem(struct sll_elem** elem, void* data, size_t sz) {
   if (NULL == elem) {
     return INVALID_ARG;
   }
@@ -15,9 +17,9 @@ int sll_make_elem(struct sll_elem** elem, void* data, size_t sz) {
     return INVALID_ARG;
   }
 
-if (0u == sz) {
-  return INVALID_ARG;
-}
+  if (0u == sz) {
+    return INVALID_ARG;
+  }
 
   *elem = malloc(sizeof(struct sll_elem));
 
@@ -31,8 +33,8 @@ if (0u == sz) {
   return OK;
 }
 
-int sll_pushback_elem(struct sll_elem* head_elem, void* data, size_t sz) {
-
+int
+sll_pushback_elem(struct sll_elem* head_elem, void* data, size_t sz) {
   if (NULL == head_elem) {
     return INVALID_ARG;
   }
@@ -62,7 +64,8 @@ int sll_pushback_elem(struct sll_elem* head_elem, void* data, size_t sz) {
   return OK;
 }
 
-int sll_pushback_elems(struct sll_elem* head_elem, void** data, size_t* sizes) {
+int
+sll_pushback_elems(struct sll_elem* head_elem, void** data, size_t* sizes) {
   if (NULL == head_elem) {
     return INVALID_ARG;
   }
@@ -84,12 +87,13 @@ int sll_pushback_elems(struct sll_elem* head_elem, void** data, size_t* sizes) {
   return OK;
 }
 
-int sll_free(struct sll_elem* head_elem) {
+int
+sll_free(struct sll_elem* head_elem) {
   if (NULL == head_elem) {
     return INVALID_ARG;
   }
 
-  while (head_elem) {
+  while (NULL != head_elem) {
     struct sll_elem* next = head_elem->next;
     free(head_elem);
     head_elem = next;
@@ -98,7 +102,8 @@ int sll_free(struct sll_elem* head_elem) {
   return OK;
 }
 
-int sll_print(struct sll_elem* head_elem) {
+int
+sll_print(struct sll_elem* head_elem) {
   if (NULL == head_elem) {
     return INVALID_ARG;
   }

@@ -22,11 +22,20 @@ struct sll_elem {
   } payload;
 };
 
-int sll_make_elem(struct sll_elem** elem, void* data, size_t sz);
-int sll_pushback_elem(struct sll_elem* head_elem, void* data, size_t sz);
-int sll_pushback_elems(struct sll_elem* head_elem, void** data, size_t* sizes);
-int sll_free(struct sll_elem* head_elem);
-int sll_print(struct sll_elem* head_elem);
+int
+sll_make_elem(struct sll_elem** elem, void* data, size_t sz);
+
+int
+sll_pushback_elem(struct sll_elem* head_elem, void* data, size_t sz);
+
+int
+sll_pushback_elems(struct sll_elem* head_elem, void** data, size_t* sizes);
+
+int
+sll_free(struct sll_elem* head_elem);
+
+int
+sll_print(struct sll_elem* head_elem);
 
 #if defined(__cplusplus)
 }
