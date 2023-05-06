@@ -30,7 +30,7 @@ lsearch(void* begin, void* end, void* elem, size_t elem_size, equator eq) {
       return begin;
     }
 
-    ++begin;
+    begin += elem_size;
   }
 
   return end;
