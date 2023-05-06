@@ -143,7 +143,7 @@ int sll_remove_last(struct sll_elem** head_elem) {
   }
 
   else {
-    free(*head_elem);
+    free(parent->next);
     parent->next = NULL;
   }
 
