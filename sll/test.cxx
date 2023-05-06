@@ -15,7 +15,7 @@ test_empty(void) {
 }
 
 void
-test_one_elem(void) {
+test_make_elem(void) {
   struct sll_elem* head{nullptr};
   char data[]{"Hello world"};
   assert(OK == sll_make_elem(&head, data, sizeof data));
@@ -26,7 +26,7 @@ test_one_elem(void) {
 }
 
 void
-test_pushbacks(void) {
+test_pushback(void) {
   const char* data[]{"Hello world", "Privet Mir", "1 2 3 4 5", "How are you",
                      NULL};
 
@@ -64,7 +64,7 @@ test_pushbacks(void) {
 }
 
 void
-test_removes(void) {
+test_remove(void) {
   const char* data[]{"Hello world", "Privet Mir", "1 2 3 4 5", "How are you",
                      NULL};
 
@@ -127,7 +127,7 @@ test_removes(void) {
 }
 
 void
-test_merges(void) {
+test_merge(void) {
   { assert(INVALID_ARG == sll_merge(nullptr, nullptr)); }
 
   {
@@ -203,8 +203,8 @@ test_merges(void) {
 int
 main(void) {
   test_empty();
-  test_one_elem();
-  test_pushbacks();
-  test_removes();
-  test_merges();
+  test_make_elem();
+  test_pushback();
+  test_remove();
+  test_merge();
 }
