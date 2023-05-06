@@ -12,7 +12,7 @@ test_integers() {
   auto has{[begin = &data[0], end = &data[0] + 3](void* elem_to_search,
                                                   size_t elem_size) {
     void* found{lsearch(begin, end, elem_to_search, elem_size, eq)};
-    return nullptr != found;
+    return end != found;
   }};
 
   {
