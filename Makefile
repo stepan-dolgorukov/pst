@@ -1,11 +1,11 @@
 CXX:=/usr/bin/clang++
 CC:=/usr/bin/clang
 
-als: main.o als.o eq.o
-	$(CXX) main.o als.o eq.o -o als
+als: test.o als.o eq.o
+	$(CXX) test.o als.o eq.o -o als
 
 test.o: test.cxx
-	$(CXX) -c test.cxx -o main.o
+	$(CXX) -c test.cxx -o test.o
 
 als.o: als.c
 	$(CC) -c als.c -o als.o
