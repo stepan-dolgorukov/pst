@@ -173,3 +173,14 @@ sll_remove_last_n(struct sll_elem** head_elem, size_t nelems) {
 
   return OK;
 }
+
+size_t
+sll_length(struct sll_elem* head_elem) {
+  size_t length = 0u;
+
+  while (head_elem && ++length) {
+    head_elem = head_elem->next;
+  }
+
+  return length;
+}
