@@ -58,7 +58,7 @@ size_t sll_length(struct sll_elem* head_elem);
 int sll_merge(struct sll_elem* head_first, struct sll_elem* head_second);
 ```
 
-+ Линейный поиск элемента в списке. Сравниваются первые `sz` байтов
++ Линейный поиск элемента в списке. По ```payload->data``` и ```data``` сравниваются первые `sz` байтов
 
 ```
 int sll_find(struct sll_elem* head, void* data, size_t sz, struct sll_elem** result);
