@@ -49,6 +49,9 @@ sll_length(struct sll_elem* head_elem);
 int
 sll_merge(struct sll_elem* head_first, struct sll_elem* head_second);
 
+int
+sll_find(struct sll_elem* head, void* data, size_t sz, struct sll_elem** result);
+
 #if defined(__cplusplus)
 }
 #endif

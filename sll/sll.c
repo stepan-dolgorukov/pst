@@ -1,7 +1,9 @@
 #include "sll.h"
 
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int
 sll_make_elem(struct sll_elem** elem, void* data, size_t sz) {
@@ -195,5 +197,41 @@ int sll_merge(struct sll_elem* head_first, struct sll_elem* head_second) {
   }
 
   head_first->next = head_second;
+  return OK;
+}
+
+int
+sll_find(struct sll_elem* head, void* data, size_t sz, struct sll_elem** result) {
+  if (NULL == head) {
+    return INVALID_ARG;
+  }
+
+  if (NULL == data) {
+    return INVALID_ARG;
+  }
+
+  if (0u == sz) {
+    return INVALID_ARG;
+  }
+
+  if (NULL == result) {
+    return INVALID_ARG;
+  }
+
+  if (NULL != *result) {
+    return INVALID_ARG;
+  }
+
+  while (NULL != head) {
+    if (head->payload.sz >= sz) {
+      if (0 == memcmp(head->payload.data, data, sz)) {
+        *result = head;
+        return OK;
+      }
+    }
+
+    head = head->next;
+  }
+
   return OK;
 }
