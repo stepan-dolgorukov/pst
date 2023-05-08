@@ -123,7 +123,6 @@ test_remove(void) {
 
     assert(INVALID_ARG == sll_free(&head));
   }
-
   std::cout << "Remove: OK" << '\n';
 }
 
@@ -300,6 +299,70 @@ void test_find(void) {
     assert(nullptr == find_result[4]);
 
     assert(OK == sll_free(&head));
+  }
+
+  {
+    float numbers[]{2.58f, 3.14f, 99.5f};
+
+    struct sll_elem* elem_A{nullptr};
+    assert(OK == sll_make_elem(&elem_A, (void*)&numbers[0], sizeof(float)));
+
+    struct sll_elem* elem_B{nullptr};
+    assert(OK == sll_make_elem(&elem_B, (void*)&numbers[1], sizeof(float)));
+
+    struct sll_elem* elem_C{nullptr};
+    assert(OK == sll_make_elem(&elem_C, (void*)&numbers[2], sizeof(float)));
+
+    assert(OK == sll_merge(elem_A, elem_B));
+    assert(elem_A->next == elem_B);
+    assert(1u + 1u == sll_length(elem_A));
+
+    assert(OK == sll_merge(elem_A, elem_C));
+    assert(elem_A->next->next == elem_C);
+    assert(NULL == elem_A->next->next->next);
+
+    assert(1u + 1u + 1u == sll_length(elem_A));
+
+    {
+      float search_value{2.58f};
+      struct sll_elem* find_result{nullptr};
+
+      assert(OK == sll_find(elem_A, (void*)&search_value, sizeof(float), &find_result));
+      assert(elem_A == find_result);
+      assert(2.58f == *(float*)find_result->payload.data);
+      assert(4 == find_result->payload.sz);
+    }
+
+    {
+      float search_value{3.14f};
+      struct sll_elem* find_result{nullptr};
+
+      assert(OK == sll_find(elem_A, (void*)&search_value, sizeof(float), &find_result));
+      assert(elem_B == find_result);
+      assert(3.14f == *(float*)find_result->payload.data);
+      assert(4 == find_result->payload.sz);
+    }
+
+    {
+      float search_value{99.5f};
+      struct sll_elem* find_result{nullptr};
+
+      assert(OK == sll_find(elem_A, (void*)&search_value, sizeof(float), &find_result));
+      assert(elem_C == find_result);
+      assert(99.5f == *(float*)find_result->payload.data);
+      assert(4 == find_result->payload.sz);
+    }
+
+    {
+      float search_value{-723.5f};
+      struct sll_elem* find_result{nullptr};
+
+      assert(OK == sll_find(elem_A, (void*)&search_value, sizeof(float), &find_result));
+      assert(nullptr == find_result);
+    }
+
+    assert(OK == sll_free(&elem_A));
+    assert(nullptr == elem_A);
   }
 
   std::cout << "Find: OK" << '\n';
