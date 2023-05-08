@@ -26,10 +26,10 @@ int
 sll_make_elem(struct sll_elem** elem, void* data, size_t sz);
 
 int
-sll_pushback_elem(struct sll_elem* head_elem, void* data, size_t sz);
+sll_pushback(struct sll_elem* head_elem, void* data, size_t sz);
 
 int
-sll_pushback_elems(struct sll_elem* head_elem, void** data, size_t* sizes);
+sll_pushback_n(struct sll_elem* head_elem, void** data, size_t* sizes);
 
 int
 sll_free(struct sll_elem** head_elem);

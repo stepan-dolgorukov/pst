@@ -37,7 +37,7 @@ sll_make_elem(struct sll_elem** elem, void* data, size_t sz) {
 }
 
 int
-sll_pushback_elem(struct sll_elem* head_elem, void* data, size_t sz) {
+sll_pushback(struct sll_elem* head_elem, void* data, size_t sz) {
   if (NULL == head_elem) {
     return INVALID_ARG;
   }
@@ -69,7 +69,7 @@ sll_pushback_elem(struct sll_elem* head_elem, void* data, size_t sz) {
 }
 
 int
-sll_pushback_elems(struct sll_elem* head_elem, void** data, size_t* sizes) {
+sll_pushback_n(struct sll_elem* head_elem, void** data, size_t* sizes) {
   if (NULL == head_elem) {
     return INVALID_ARG;
   }
@@ -83,7 +83,7 @@ sll_pushback_elems(struct sll_elem* head_elem, void** data, size_t* sizes) {
   }
 
   while (NULL != *data) {
-    sll_pushback_elem(head_elem, *data, *sizes);
+    sll_pushback(head_elem, *data, *sizes);
     ++data;
     ++sizes;
   }

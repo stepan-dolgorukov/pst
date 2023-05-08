@@ -11,13 +11,13 @@ int sll_make_elem(struct sll_elem** elem, void* data, size_t sz);
 + Создание нового элемента, добавление в конец списка
 
 ```
-int sll_pushback_elem(struct sll_elem* head_elem, void* data, size_t sz);
+int sll_pushback(struct sll_elem* head_elem, void* data, size_t sz);
 ```
 
 + Создание нескольких элементов и их добавление в конец списка
 
 ```
-int sll_pushback_elems(struct sll_elem* head_elem, void** data, size_t* sizes);
+int sll_pushback_n(struct sll_elem* head_elem, void** data, size_t* sizes);
 ```
 
 + Пометить память, занятую списком, свободной. После вызова
