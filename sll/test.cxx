@@ -141,6 +141,12 @@ test_merge(void) {
 
     assert(OK == sll_merge(head_first, head_second));
     assert(1u + 0u == sll_length(head_first));
+
+    assert(OK == sll_free(&head_first));
+    assert(nullptr == head_first);
+
+    assert(INVALID_ARG == sll_free(&head_second));
+    assert(nullptr == head_second);
   }
 
   {
@@ -154,6 +160,9 @@ test_merge(void) {
 
     assert(OK == sll_merge(head_first, head_second));
     assert(1u + 1u == sll_length(head_first));
+
+    assert(OK == sll_free(&head_first));
+    assert(nullptr == head_first);
   }
 
   {
@@ -196,6 +205,9 @@ test_merge(void) {
 
     assert(OK == sll_merge(head_first, head_second));
     assert(7u + 4u == sll_length(head_first));
+
+    assert(OK == sll_free(&head_first));
+    assert(nullptr == head_first);
   }
 
   std::cout << "Merge: OK" << '\n';
