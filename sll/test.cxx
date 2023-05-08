@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <iostream>
 
 #include "assert.h"
@@ -200,6 +201,98 @@ test_merge(void) {
   std::cout << "Merge: OK" << '\n';
 }
 
+void test_find(void) {
+  {
+    struct sll_elem* head{nullptr};
+    assert(INVALID_ARG == sll_find(head, nullptr, 0u, nullptr));
+  }
+
+  {
+    struct sll_elem* head{nullptr};
+    assert(OK == sll_make_elem(&head, (void*)"1", 2u));
+
+    assert(INVALID_ARG == sll_find(head, nullptr, 1u, nullptr));
+    assert(INVALID_ARG == sll_find(head, (void*)"1", 0u, nullptr));
+    assert(INVALID_ARG == sll_find(head, (void*)"1", 2u, nullptr));
+
+    {
+      struct sll_elem* find_result{nullptr};
+      assert(INVALID_ARG == sll_find(head, (void*)"1", 0u, &find_result));
+      assert(INVALID_ARG == sll_find(head, nullptr, 2u, &find_result));
+    }
+
+    {
+      struct sll_elem* find_result{head};
+      assert(INVALID_ARG == sll_find(head, (void*)"1", 2u, &find_result));
+    }
+
+    {
+      struct sll_elem* find_result{nullptr};
+      assert(OK == sll_find(head, (void*)"Hello world!", 13u, &find_result));
+      assert(nullptr == find_result);
+    }
+
+    // Ни у какого элемента в списке нет такого размера
+    {
+      struct sll_elem* find_result{nullptr};
+      assert(OK == sll_find(head, (void*)"1", 3u, &find_result));
+      assert(nullptr == find_result);
+    }
+
+    // Сравнение первых 2 байтов
+    {
+      struct sll_elem* find_result{nullptr};
+      assert(OK == sll_find(head, (void*)"1", 2u, &find_result));
+      assert(head == find_result);
+    }
+
+    // Сравнение первого байта
+    {
+      struct sll_elem* find_result{nullptr};
+      assert(OK == sll_find(head, (void*)"1", 1u, &find_result));
+      assert(head == find_result);
+    }
+
+    // Элемента со строкой "2" в списке нет
+    {
+      struct sll_elem* find_result{nullptr};
+      assert(OK == sll_find(head, (void*)"2", 1u, &find_result));
+      assert(nullptr == find_result);
+    }
+
+    assert(OK == sll_free(head));
+  }
+
+  {
+    struct sll_elem* find_result[5]{nullptr};
+    struct sll_elem* head{nullptr};
+
+    assert(OK == sll_make_elem(&head, (void*)"1", 2u));
+    assert(OK == sll_pushback_elem(head, (void*)"2", 2u));
+    assert(OK == sll_pushback_elem(head, (void*)"3", 2u));
+    assert(OK == sll_pushback_elem(head, (void*)"4", 2u));
+
+    assert(OK == sll_find(head, (void*)"1", 2u, &find_result[0]));
+    assert(head == find_result[0]);
+
+    assert(OK == sll_find(head, (void*)"2", 2u, &find_result[1]));
+    assert(head->next == find_result[1]);
+
+    assert(OK == sll_find(head, (void*)"3", 2u, &find_result[2]));
+    assert(head->next->next == find_result[2]);
+
+    assert(OK == sll_find(head, (void*)"4", 2u, &find_result[3]));
+    assert(head->next->next->next == find_result[3]);
+
+    assert(OK == sll_find(head, (void*)"5", 2u, &find_result[4]));
+    assert(nullptr == find_result[4]);
+
+    assert(OK == sll_free(head));
+  }
+
+  std::cout << "Find: OK" << '\n';
+}
+
 int
 main(void) {
   test_empty();
@@ -207,4 +300,5 @@ main(void) {
   test_pushback();
   test_remove();
   test_merge();
+  test_find();
 }
