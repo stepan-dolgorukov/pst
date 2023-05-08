@@ -92,15 +92,19 @@ sll_pushback_elems(struct sll_elem* head_elem, void** data, size_t* sizes) {
 }
 
 int
-sll_free(struct sll_elem* head_elem) {
+sll_free(struct sll_elem** head_elem) {
   if (NULL == head_elem) {
     return INVALID_ARG;
   }
 
-  while (NULL != head_elem) {
-    struct sll_elem* next = head_elem->next;
-    free(head_elem);
-    head_elem = next;
+  if (NULL == *head_elem) {
+    return INVALID_ARG;
+  }
+
+  while (NULL != *head_elem) {
+    struct sll_elem* next = (*head_elem)->next;
+    free(*head_elem);
+    (*head_elem) = next;
   }
 
   return OK;

@@ -10,7 +10,7 @@ test_empty(void) {
   assert(0u == sll_length(head));
   assert(INVALID_ARG == sll_remove_last(&head));
   assert(INVALID_ARG == sll_remove_last_n(&head, 1u));
-  assert(INVALID_ARG == sll_free(head));
+  assert(INVALID_ARG == sll_free(&head));
 
   std::cout << "Empty: OK" << '\n';
 }
@@ -21,7 +21,7 @@ test_make_elem(void) {
   char data[]{"Hello world"};
   assert(OK == sll_make_elem(&head, data, sizeof data));
   assert(1u == sll_length(head));
-  assert(OK == sll_free(head));
+  assert(OK == sll_free(&head));
 
   std::cout << "One element: OK" << '\n';
 }
@@ -45,7 +45,7 @@ test_pushback(void) {
     assert(OK == sll_pushback_elem(head, (void*)data[3], 12u));
     assert(4u == sll_length(head));
 
-    assert(OK == sll_free(head));
+    assert(OK == sll_free(&head));
   }
 
   {
@@ -58,7 +58,7 @@ test_pushback(void) {
     assert(OK == sll_pushback_elems(head, (void**)(&data[1]), sizes));
     assert(4u == sll_length(head));
 
-    assert(OK == sll_free(head));
+    assert(OK == sll_free(&head));
   }
 
   std::cout << "Pushback: OK" << '\n';
@@ -91,7 +91,7 @@ test_remove(void) {
     assert(OK == sll_pushback_elem(head, (void*)data[2], 10u));
     assert(2u == sll_length(head));
 
-    assert(OK == sll_free(head));
+    assert(OK == sll_free(&head));
   }
 
   {
@@ -108,7 +108,7 @@ test_remove(void) {
     assert(OK == sll_remove_last_n(&head, 4u));
     assert(0u == sll_length(head));
 
-    assert(INVALID_ARG == sll_free(head));
+    assert(INVALID_ARG == sll_free(&head));
   }
 
   {
@@ -121,7 +121,7 @@ test_remove(void) {
     assert(OK == sll_remove_last(&head));
     assert(0u == sll_length(head));
 
-    assert(INVALID_ARG == sll_free(head));
+    assert(INVALID_ARG == sll_free(&head));
   }
 
   std::cout << "Remove: OK" << '\n';
@@ -260,7 +260,7 @@ void test_find(void) {
       assert(nullptr == find_result);
     }
 
-    assert(OK == sll_free(head));
+    assert(OK == sll_free(&head));
   }
 
   {
@@ -287,7 +287,7 @@ void test_find(void) {
     assert(OK == sll_find(head, (void*)"5", 2u, &find_result[4]));
     assert(nullptr == find_result[4]);
 
-    assert(OK == sll_free(head));
+    assert(OK == sll_free(&head));
   }
 
   std::cout << "Find: OK" << '\n';

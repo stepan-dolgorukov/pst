@@ -32,7 +32,7 @@ int
 sll_pushback_elems(struct sll_elem* head_elem, void** data, size_t* sizes);
 
 int
-sll_free(struct sll_elem* head_elem);
+sll_free(struct sll_elem** head_elem);
 
 int
 sll_print(struct sll_elem* head_elem);
