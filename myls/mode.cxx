@@ -1,16 +1,17 @@
 #include "mode.hxx"
+#include "args.hxx"
 
-myls::mode::mode(std::uint8_t mode_mask) : mask{mode_mask} {
+myls::mode::mode(myls::mode_mask mask) : mask{mask} {
 }
 
 bool myls::mode::has_long_listing() {
-  return 0b100u & mask;
+  return mask.get(myls::arguments::long_listing);
 }
 
 bool myls::mode::has_reverse_listing() {
-  return 0b010u & mask;
+  return mask.get(myls::arguments::reverse_listing);
 }
 
 bool myls::mode::has_human_size() {
-  return 0b001u & mask;
+  return mask.get(myls::arguments::human_readable_size);
 }

@@ -3,7 +3,7 @@
 #include "argparser.hxx"
 #include "args.hxx"
 
-myls::argparser::argparser(int nargs, char* argv[]): mode_mask{0b000u} {
+myls::argparser::argparser(int nargs, char* argv[]) {
   signed raw_arg{};
 
   while (-1 != (raw_arg = getopt(nargs, argv, arg_format.c_str()))) {
@@ -11,15 +11,15 @@ myls::argparser::argparser(int nargs, char* argv[]): mode_mask{0b000u} {
 
     switch (arg) {
       case myls::arguments::long_listing:
-        mode_mask |= arg_mask.at(myls::arguments::long_listing);
+        mask.set(myls::arguments::long_listing);
         break;
 
       case myls::arguments::reverse_listing:
-        mode_mask |= arg_mask.at(myls::arguments::reverse_listing);
+        mask.set(myls::arguments::reverse_listing);
         break;
 
       case myls::arguments::human_readable_size:
-        mode_mask |= arg_mask.at(myls::arguments::human_readable_size);
+        mask.set(myls::arguments::human_readable_size);
         break;
 
       default:
@@ -30,5 +30,5 @@ myls::argparser::argparser(int nargs, char* argv[]): mode_mask{0b000u} {
 };
 
 myls::mode myls::argparser::operator()(void) {
-  return myls::mode(mode_mask);
+  return myls::mode(mask);
 };

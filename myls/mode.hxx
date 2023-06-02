@@ -2,13 +2,14 @@
 #define MODE_HXX
 
 #include <cstdint>
+#include "mode_mask.hxx"
 
 namespace myls {
   class mode;
 }
 
 class myls::mode {
-  std::uint8_t mask: 3u;
+  myls::mode_mask mask{};
 
   template<typename Output>
   friend Output& operator<<(Output& out, myls::mode mode) {
@@ -20,7 +21,7 @@ class myls::mode {
   }
 
   public:
-    mode(std::uint8_t mode_mask);
+    mode(myls::mode_mask mask);
     bool has_long_listing(void);
     bool has_reverse_listing(void);
     bool has_human_size(void);
