@@ -12,16 +12,16 @@ namespace myls {
 class myls::option_mask {
   std::uint8_t mask: 3u;
 
-  std::unordered_map<myls::arguments, std::uint8_t> arg_mask{
-    {myls::arguments::long_listing, 0b100u},
-    {myls::arguments::reverse_listing, 0b010u},
-    {myls::arguments::human_readable_size, 0b001u}
+  std::unordered_map<myls::options, std::uint8_t> arg_mask{
+    {myls::options::long_listing, 0b100u},
+    {myls::options::reverse_listing, 0b010u},
+    {myls::options::human_readable_size, 0b001u}
   };
 
   public:
     option_mask(void);
-    void set(myls::arguments arg);
-    bool get(myls::arguments arg);
+    void set(myls::options arg);
+    bool get(myls::options arg);
 };
 
 #endif
