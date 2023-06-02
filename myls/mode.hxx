@@ -10,7 +10,7 @@ namespace myls {
 }
 
 class myls::mode {
-  myls::mode_mask mask{};
+  myls::option_mask mask{};
   std::string directory{"."};
 
   template<typename Output>
@@ -24,7 +24,7 @@ class myls::mode {
   }
 
   public:
-    mode(myls::mode_mask mask, const std::string& directory);
+    mode(myls::option_mask mask, const std::string& directory);
     bool has_long_listing(void);
     bool has_reverse_listing(void);
     bool has_human_size(void);

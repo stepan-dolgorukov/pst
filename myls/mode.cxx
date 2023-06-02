@@ -1,7 +1,7 @@
 #include "mode.hxx"
 #include "args.hxx"
 
-myls::mode::mode(myls::mode_mask mask, const std::string& directory) :
+myls::mode::mode(myls::option_mask mask, const std::string& directory) :
   mask{mask},
   directory{directory} {
 }

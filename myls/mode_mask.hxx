@@ -6,10 +6,10 @@
 #include "args.hxx"
 
 namespace myls {
-  class mode_mask;
+  class option_mask;
 }
 
-class myls::mode_mask {
+class myls::option_mask {
   std::uint8_t mask: 3u;
 
   std::unordered_map<myls::arguments, std::uint8_t> arg_mask{
@@ -19,7 +19,7 @@ class myls::mode_mask {
   };
 
   public:
-    mode_mask(void);
+    option_mask(void);
     void set(myls::arguments arg);
     bool get(myls::arguments arg);
 };

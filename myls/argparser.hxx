@@ -12,7 +12,7 @@ namespace myls {
 
 class myls::argparser {
   std::string arg_format{"lrh"};
-  myls::mode_mask mask{};
+  myls::option_mask mask{};
   std::string directory{"."};
 
   struct {
