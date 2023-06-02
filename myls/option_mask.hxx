@@ -3,7 +3,8 @@
 
 #include <cstdint>
 #include <unordered_map>
-#include "args.hxx"
+
+#include "options.hxx"
 
 namespace myls {
   class option_mask;

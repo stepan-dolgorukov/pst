@@ -1,5 +1,6 @@
+#include "options.hxx"
+#include "option_mask.hxx"
 #include "mode.hxx"
-#include "args.hxx"
 
 myls::mode::mode(myls::option_mask mask, const std::string& directory) :
   mask{mask},

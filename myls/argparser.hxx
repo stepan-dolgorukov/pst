@@ -2,8 +2,9 @@
 #define ARGPARSER_HXX
 
 #include <string>
+#include "options.hxx"
+#include "option_mask.hxx"
 #include "mode.hxx"
-#include "mode_mask.hxx"
 #include <vector>
 
 namespace myls {

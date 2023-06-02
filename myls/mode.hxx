@@ -2,7 +2,7 @@
 #define MODE_HXX
 
 #include <cstdint>
-#include "mode_mask.hxx"
+#include "option_mask.hxx"
 #include <string>
 
 namespace myls {

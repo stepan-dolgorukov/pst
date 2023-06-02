@@ -1,4 +1,4 @@
-#include "mode_mask.hxx"
+#include "option_mask.hxx"
 
 myls::option_mask::option_mask(void): mask{0b000u} {
 
