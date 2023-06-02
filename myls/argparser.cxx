@@ -4,10 +4,21 @@
 #include "args.hxx"
 #include <iostream>
 
-myls::argparser::argparser(int nargs, char* argv[]) {
+myls::argparser::argparser(int nargs, char* argv[])
+  : raw_args{nargs, argv} {
+
+  parse_actions();
+  parse_directory();
+};
+
+myls::mode myls::argparser::operator()(void) {
+  return myls::mode(mask, directory);
+};
+
+void myls::argparser::parse_actions(void) {
   signed raw_arg{};
 
-  while (-1 != (raw_arg = getopt(nargs, argv, arg_format.c_str()))) {
+  while (-1 != (raw_arg = getopt(raw_args.amount, raw_args.values, arg_format.c_str()))) {
     myls::arguments arg{static_cast<myls::arguments>(raw_arg)};
 
     switch (arg) {
@@ -22,16 +33,14 @@ myls::argparser::argparser(int nargs, char* argv[]) {
         break;
     };
   }
+}
 
-  if (1 != nargs) {
-    int last{nargs - 1};
+void myls::argparser::parse_directory(void) {
+  if (1 != raw_args.amount) {
+    int last{raw_args.amount- 1};
 
-    if ('-' != argv[last][0]) {
-      directory = argv[last];
+    if ('-' != raw_args.values[last][0]) {
+      directory = raw_args.values[last];
     }
   }
-};
-
-myls::mode myls::argparser::operator()(void) {
-  return myls::mode(mask, directory);
-};
+}
