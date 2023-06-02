@@ -9,5 +9,5 @@ void myls::option_mask::set(myls::options arg) {
 }
 
 bool myls::option_mask::get(myls::options arg) {
-  return 0u != (mask & arg_mask.at(arg));
+  return arg_mask.at(arg) == (mask & arg_mask.at(arg));
 }
