@@ -2,6 +2,7 @@
 #include <string>
 #include "argparser.hxx"
 #include "args.hxx"
+#include <iostream>
 
 myls::argparser::argparser(int nargs, char* argv[]) {
   signed raw_arg{};
@@ -11,15 +12,9 @@ myls::argparser::argparser(int nargs, char* argv[]) {
 
     switch (arg) {
       case myls::arguments::long_listing:
-        mask.set(myls::arguments::long_listing);
-        break;
-
       case myls::arguments::reverse_listing:
-        mask.set(myls::arguments::reverse_listing);
-        break;
-
       case myls::arguments::human_readable_size:
-        mask.set(myls::arguments::human_readable_size);
+        mask.set(arg);
         break;
 
       default:
@@ -27,8 +22,16 @@ myls::argparser::argparser(int nargs, char* argv[]) {
         break;
     };
   }
+
+  if (1 != nargs) {
+    int last{nargs - 1};
+
+    if ('-' != argv[last][0]) {
+      directory = argv[last];
+    }
+  }
 };
 
 myls::mode myls::argparser::operator()(void) {
-  return myls::mode(mask);
+  return myls::mode(mask, directory);
 };

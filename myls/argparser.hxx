@@ -12,6 +12,7 @@ namespace myls {
 class myls::argparser {
   std::string arg_format{"lrh"};
   myls::mode_mask mask{};
+  std::string directory{"."};
 
  public:
   argparser(int nargs, char* argv[]);
