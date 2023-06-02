@@ -1,3 +1,6 @@
+#ifndef MODE_HXX
+#define MODE_HXX
+
 #include <cstdint>
 
 namespace myls {
@@ -22,3 +25,5 @@ class myls::mode {
     bool has_reverse_listing(void);
     bool has_human_size(void);
 };
+
+#endif
