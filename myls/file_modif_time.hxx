@@ -20,7 +20,11 @@ class myls::file_modif_time {
   template<typename Output>
   friend Output& operator<<(Output& out, myls::file_modif_time modif_time) {
     decltype(modif_time()) time{modif_time()};
-    return out << std::asctime(std::localtime(&time));
+    char output_mod_time[64u]{'\0'};
+
+    std::strftime(std::data(output_mod_time), std::size(output_mod_time),
+                  "%b %e %H:%M", std::localtime(&time));
+    return out << output_mod_time;
   }
 
  public:
