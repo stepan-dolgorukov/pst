@@ -22,14 +22,14 @@ class myls::file_info {
     myls::file_modif_time mod_time;
     std::string name;
 
-    info(const std::string& name)
-      : type{name},
-        permissions{name},
-        nhlinks{name},
-        owners{name},
-        size{name},
-        mod_time{name},
-        name{name} {
+    info(const std::string& directory_name, const std::string& file_name)
+      : type{directory_name + '/' + file_name},
+        permissions{directory_name + '/' + file_name},
+        nhlinks{directory_name + '/' + file_name},
+        owners{directory_name + '/' + file_name},
+        size{directory_name + '/' + file_name},
+        mod_time{directory_name + '/' + file_name},
+        name{file_name} {
     }
   } info;
 
@@ -51,7 +51,7 @@ class myls::file_info {
   }
 
   public:
-  file_info(const std::string& name);
+  file_info(const std::string& directory_name, const std::string& file_name);
   decltype(info) operator()(void);
 };
 

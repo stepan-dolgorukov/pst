@@ -2,7 +2,8 @@
 #include "file_info.hxx"
 #include <algorithm>
 #include <dirent.h>
-#include <set>
+#include <exception>
+#include <system_error>
 
 myls::former::former(const myls::mode& mode) : mode{mode} {
 }
@@ -12,7 +13,7 @@ std::vector<myls::file_info> myls::former::operator()(void) {
   struct dirent* directory_entry{};
 
   if (nullptr == directory) {
-    return {};
+    throw "Не удалось открыть каталог " + mode.get_directory();
   }
 
   std::vector<myls::file_info> info{};
