@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include <unistd.h>
 #include <string>
 #include "argparser.hxx"
@@ -17,6 +18,9 @@ myls::mode myls::argparser::operator()(void) {
 void myls::argparser::parse_actions(void) {
   signed raw_arg{};
 
+  // Выключение стандартных сообщений при парсинге
+  opterr = 0;
+
   while (-1 != (raw_arg = getopt(raw_args.amount, raw_args.values, arg_format.c_str()))) {
 
     switch (raw_arg) {
@@ -26,9 +30,13 @@ void myls::argparser::parse_actions(void) {
         mask.set(static_cast<myls::options>(raw_arg));
         break;
 
-      default:
-        // THINK
-        break;
+      case '?':
+        std::string message{"Неизвестный ключ "};
+        message += '"';
+        message += optopt;
+        message += '"';
+
+        throw std::invalid_argument{message};
     };
   }
 }
