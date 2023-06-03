@@ -48,9 +48,42 @@ class myls::file_perm {
   sys_stat stat{};
 
   void fill_permissions(void);
+  bool permission(myls::permissions perm);
+
+  template<typename Output>
+  friend Output& operator<<(Output& out, myls::file_perm& fp);
 
  public:
   file_perm(const std::string& name);
+
+  bool can_owner_read(void);
+  bool can_owner_write(void);
+  bool can_owner_execute(void);
+
+  bool can_group_read(void);
+  bool can_group_write(void);
+  bool can_group_execute(void);
+
+  bool can_other_read(void);
+  bool can_other_write(void);
+  bool can_other_execute(void);
 };
+
+template<typename Output>
+Output& myls::operator<<(Output& out, myls::file_perm& fp) {
+  out << (fp.can_owner_read() ? 'r' : '-');
+  out << (fp.can_owner_write() ? 'w' : '-');
+  out << (fp.can_owner_execute() ? 'x' : '-');
+
+  out << (fp.can_group_read() ? 'r' : '-');
+  out << (fp.can_group_write() ? 'w' : '-');
+  out << (fp.can_group_execute() ? 'x' : '-');
+
+  out << (fp.can_other_read() ? 'r' : '-');
+  out << (fp.can_other_write() ? 'w' : '-');
+  out << (fp.can_other_execute() ? 'x' : '-');
+
+  return out;
+}
 
 #endif
