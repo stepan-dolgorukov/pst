@@ -7,6 +7,8 @@
 #include "file_perm.hxx"
 #include "file_size.hxx"
 #include "file_type.hxx"
+#include <iomanip>
+#include <iostream>
 
 namespace myls {
   class file_info;
@@ -35,6 +37,14 @@ class myls::file_info {
 
   template<typename Output>
   friend Output& operator<<(Output& out, myls::file_info fi) {
+    auto quot_if_has_spaces{[](const std::string& name){
+      if (name.npos != name.find(' ')) {
+        return '\'' + name + '\'';
+      }
+
+      return name;
+    }};
+
     return out <<
       fi.info.type <<
       fi.info.permissions <<
@@ -47,7 +57,7 @@ class myls::file_info {
       ' ' <<
       fi.info.mod_time <<
       ' ' <<
-      fi.info.name;
+      quot_if_has_spaces(fi.info.name);
   }
 
   public:
