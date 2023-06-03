@@ -18,13 +18,12 @@ void myls::argparser::parse_actions(void) {
   signed raw_arg{};
 
   while (-1 != (raw_arg = getopt(raw_args.amount, raw_args.values, arg_format.c_str()))) {
-    myls::options arg{static_cast<myls::options>(raw_arg)};
 
-    switch (arg) {
-      case myls::options::long_listing:
-      case myls::options::reverse_listing:
-      case myls::options::human_readable_size:
-        mask.set(arg);
+    switch (raw_arg) {
+      case static_cast<signed>(myls::options::long_listing):
+      case static_cast<signed>(myls::options::reverse_listing):
+      case static_cast<signed>(myls::options::human_readable_size):
+        mask.set(static_cast<myls::options>(raw_arg));
         break;
 
       default:
