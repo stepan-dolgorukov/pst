@@ -1,5 +1,5 @@
-#ifndef ARGS_HXX
-#define ARGS_HXX
+#ifndef OPTIONS_HXX
+#define OPTIONS_HXX
 
 namespace myls {
   enum class options : char;
