@@ -3,7 +3,7 @@
 #include <iostream>
 
 myls::file_perm::file_perm(const std::string& name)
-    : mask{0b000'000'000u}, name{name} {
+    : perms{0b000'000'000u}, name{name} {
 
   int error_status{::stat(name.c_str(), &stat)};
 
@@ -14,15 +14,15 @@ myls::file_perm::file_perm(const std::string& name)
 
 void myls::file_perm::fill_owner_mask(void) {
   if (S_IRUSR == (S_IRUSR & stat.st_mode)) {
-    mask |= static_cast<std::uint16_t>(myls::permissions::owner_read);
+    perms |= static_cast<std::uint16_t>(myls::permissions::owner_read);
   }
 
   if (S_IWUSR == (S_IWUSR & stat.st_mode)) {
-    mask |= static_cast<std::uint16_t>(myls::permissions::owner_write);
+    perms |= static_cast<std::uint16_t>(myls::permissions::owner_write);
   }
 
   if (S_IXUSR == (S_IXUSR & stat.st_mode)) {
-    mask |= static_cast<std::uint16_t>(myls::permissions::owner_execute);
+    perms |= static_cast<std::uint16_t>(myls::permissions::owner_execute);
   }
 }
 

@@ -26,7 +26,7 @@ enum class myls::permissions : std::uint16_t {
 
 
 class myls::file_perm {
-  std::uint16_t mask : 9u;
+  std::uint16_t perms : 9u;
   std::string name{};
 
   using sys_stat = struct stat;
