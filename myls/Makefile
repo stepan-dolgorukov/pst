@@ -10,7 +10,8 @@ myls: myls.o \
 			file_hlinks_amnt.o \
 			file_owner.o \
 			file_modif_time.o \
-			file_info.o
+			file_info.o \
+			former.o
 
 	$(CXX) \
 	myls.o \
@@ -24,6 +25,7 @@ myls: myls.o \
 	file_owner.o \
 	file_modif_time.o \
 	file_info.o \
+	former.o \
 	-o myls
 
 myls.o: myls.cxx
@@ -58,3 +60,6 @@ file_modif_time.o: file_modif_time.cxx file_modif_time.hxx
 
 file_info.o: file_info.cxx file_info.hxx
 	$(CXX) -c file_info.cxx -o file_info.o
+
+former.o: former.cxx former.hxx
+	$(CXX) -c former.cxx -o former.o
