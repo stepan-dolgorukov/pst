@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <string>
 #include <sys/stat.h>
+#include <unordered_map>
 
 namespace myls {
   class file_perm;
@@ -29,12 +30,24 @@ class myls::file_perm {
   std::uint16_t perms : 9u;
   std::string name{};
 
+  std::unordered_map<myls::permissions, int> protection_bits{
+    {myls::permissions::owner_read, S_IRUSR},
+    {myls::permissions::owner_write, S_IWUSR},
+    {myls::permissions::owner_execute, S_IXUSR},
+
+    {myls::permissions::group_read, S_IRGRP},
+    {myls::permissions::group_write, S_IWGRP},
+    {myls::permissions::group_execute, S_IXGRP},
+
+    {myls::permissions::other_read, S_IROTH},
+    {myls::permissions::other_write, S_IWOTH},
+    {myls::permissions::other_execute, S_IXOTH}
+  };
+
   using sys_stat = struct stat;
   sys_stat stat{};
 
-  void fill_owner_mask(void);
-  void fill_group_mask(void);
-  void fill_other_mask(void);
+  void fill_permissions(void);
 
  public:
   file_perm(const std::string& name);
