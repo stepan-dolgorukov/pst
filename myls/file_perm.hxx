@@ -69,11 +69,12 @@ class myls::file_perm {
   bool can_other_execute(void);
 
   operator std::string();
+  std::string operator()();
 };
 
 template<typename Output>
 Output& myls::operator<<(Output& out, myls::file_perm& fp) {
-  return out << static_cast<std::string>(fp);
+  return out << fp();
 }
 
 #endif

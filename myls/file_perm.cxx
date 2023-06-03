@@ -63,3 +63,49 @@ bool myls::file_perm::can_other_write(void) {
 bool myls::file_perm::can_other_execute(void) {
   return permission(myls::permissions::other_execute);
 }
+
+myls::file_perm::operator std::string(void) {
+  std::string perms{"---------"};
+
+  if (can_owner_read()) {
+    perms.at(0) = 'r';
+  }
+
+  if (can_owner_write()) {
+    perms.at(1) = 'w';
+  }
+
+  if (can_owner_execute()) {
+    perms.at(2) = 'x';
+  }
+
+  if (can_group_read()) {
+    perms.at(3) = 'r';
+  }
+
+  if (can_group_write()) {
+    perms.at(4) = 'w';
+  }
+
+  if (can_group_execute()) {
+    perms.at(5) = 'x';
+  }
+
+  if (can_other_read()) {
+    perms.at(6) = 'r';
+  }
+
+  if (can_other_write()) {
+    perms.at(7) = 'w';
+  }
+
+  if (can_other_execute()) {
+    perms.at(8) = 'x';
+  }
+
+  return perms;
+};
+
+std::string myls::file_perm::operator()(void) {
+  return static_cast<std::string>(*this);
+}
