@@ -1,7 +1,7 @@
 CXX := /usr/bin/g++
 
-myls: myls.o argparser.o mode.o option_mask.o file_perm.o
-	$(CXX) myls.o argparser.o mode.o option_mask.o file_perm.o -o myls
+myls: myls.o argparser.o mode.o option_mask.o file_perm.o file_type.o
+	$(CXX) myls.o argparser.o mode.o option_mask.o file_perm.o file_type.o -o myls
 
 myls.o: myls.cxx
 	$(CXX) -c myls.cxx -o myls.o
@@ -17,3 +17,6 @@ option_mask.o: option_mask.cxx
 
 file_perm.o: file_perm.cxx
 	$(CXX) -c file_perm.cxx -o file_perm.o
+
+file_type.o: file_type.cxx
+	$(CXX) -c file_type.cxx -o file_type.o
