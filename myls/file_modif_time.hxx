@@ -19,7 +19,8 @@ class myls::file_modif_time {
 
   template<typename Output>
   friend Output& operator<<(Output& out, myls::file_modif_time modif_time) {
-    return out << modif_time();
+    decltype(modif_time()) time{modif_time()};
+    return out << std::asctime(std::localtime(&time));
   }
 
  public:
