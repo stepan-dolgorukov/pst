@@ -12,7 +12,6 @@ std::vector<myls::file_info> myls::former::operator()(void) {
   struct dirent* directory_entry{};
 
   if (nullptr == directory) {
-    // THINK
     return {};
   }
 
@@ -34,7 +33,7 @@ std::vector<myls::file_info> myls::former::operator()(void) {
   }
 
   for (auto& name : file_names) {
-    info.emplace_back(name);
+    info.emplace_back(mode.get_directory(), name);
   }
 
   return info;
