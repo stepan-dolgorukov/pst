@@ -25,6 +25,7 @@ class myls::file_size {
  public:
   file_size(const std::string& name);
   std::size_t operator()(void);
+  std::string operator()(bool human_readable);
 };
 
 #endif

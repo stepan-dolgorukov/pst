@@ -15,6 +15,7 @@ namespace myls {
 }
 
 class myls::file_info {
+  bool human_readable_size{};
   struct info {
     myls::file_type type;
     myls::file_perm permissions;
@@ -53,7 +54,7 @@ class myls::file_info {
       ' ' <<
       fi.info.owners <<
       ' ' <<
-      fi.info.size <<
+      fi.info.size(fi.human_readable_size) <<
       ' ' <<
       fi.info.mod_time <<
       ' ' <<
@@ -61,8 +62,12 @@ class myls::file_info {
   }
 
   public:
-  file_info(const std::string& directory_name, const std::string& file_name);
-  decltype(info) operator()(void);
+   file_info(const std::string& directory_name,
+              const std::string& file_name,
+              bool human_readable_size);
+
+   decltype(info)
+   operator()(void);
 };
 
 #endif

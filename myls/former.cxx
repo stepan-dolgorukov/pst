@@ -34,7 +34,7 @@ std::vector<myls::file_info> myls::former::operator()(void) {
   }
 
   for (auto& name : file_names) {
-    info.emplace_back(mode.get_directory(), name);
+    info.emplace_back(mode.get_directory(), name, mode.has_human_size());
   }
 
   return info;
