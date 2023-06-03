@@ -1,6 +1,14 @@
 CXX := /usr/bin/g++
 
-myls: myls.o argparser.o mode.o option_mask.o file_perm.o file_type.o file_size.o file_hlinks_amnt.o
+myls: myls.o \
+			argparser.o \
+			mode.o \
+			option_mask.o \
+			file_perm.o \
+			file_type.o \
+			file_size.o \
+			file_hlinks_amnt.o
+
 	$(CXX) \
 	myls.o \
 	argparser.o \
