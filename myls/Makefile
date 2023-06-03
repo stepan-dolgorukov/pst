@@ -7,7 +7,8 @@ myls: myls.o \
 			file_perm.o \
 			file_type.o \
 			file_size.o \
-			file_hlinks_amnt.o
+			file_hlinks_amnt.o \
+			file_owner.o
 
 	$(CXX) \
 	myls.o \
@@ -18,6 +19,7 @@ myls: myls.o \
 	file_type.o \
 	file_size.o \
 	file_hlinks_amnt.o \
+	file_owner.o \
 	-o myls
 
 myls.o: myls.cxx
@@ -43,3 +45,6 @@ file_size.o: file_size.cxx
 
 file_hlinks_amnt.o: file_hlinks_amnt.cxx
 	$(CXX) -c file_hlinks_amnt.cxx -o file_hlinks_amnt.o
+
+file_owner.o: file_owner.cxx
+	$(CXX) -c file_owner.cxx -o file_owner.o
