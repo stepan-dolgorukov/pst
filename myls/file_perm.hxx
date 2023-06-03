@@ -67,23 +67,53 @@ class myls::file_perm {
   bool can_other_read(void);
   bool can_other_write(void);
   bool can_other_execute(void);
+
+  operator std::string(void) {
+    std::string perms{"---------"};
+
+    if (can_owner_read()) {
+      perms.at(0) = 'r';
+    }
+
+    if (can_owner_write()) {
+      perms.at(1) = 'w';
+    }
+
+    if (can_owner_execute()) {
+      perms.at(2) = 'x';
+    }
+
+    if (can_group_read()) {
+      perms.at(3) = 'r';
+    }
+
+    if (can_group_write()) {
+      perms.at(4) = 'w';
+    }
+
+    if (can_group_execute()) {
+      perms.at(5) = 'x';
+    }
+
+    if (can_other_read()) {
+      perms.at(6) = 'r';
+    }
+
+    if (can_other_write()) {
+      perms.at(7) = 'w';
+    }
+
+    if (can_other_execute()) {
+      perms.at(8) = 'x';
+    }
+
+    return perms;
+  };
 };
 
 template<typename Output>
 Output& myls::operator<<(Output& out, myls::file_perm& fp) {
-  out << (fp.can_owner_read() ? 'r' : '-');
-  out << (fp.can_owner_write() ? 'w' : '-');
-  out << (fp.can_owner_execute() ? 'x' : '-');
-
-  out << (fp.can_group_read() ? 'r' : '-');
-  out << (fp.can_group_write() ? 'w' : '-');
-  out << (fp.can_group_execute() ? 'x' : '-');
-
-  out << (fp.can_other_read() ? 'r' : '-');
-  out << (fp.can_other_write() ? 'w' : '-');
-  out << (fp.can_other_execute() ? 'x' : '-');
-
-  return out;
+  return out << static_cast<std::string>(fp);
 }
 
 #endif
