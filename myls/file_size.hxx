@@ -19,7 +19,7 @@ class myls::file_size {
 
   template<typename Output>
   friend Output& operator<<(Output& out, myls::file_size fs) {
-    return out << std::to_string(fs());
+    return out << fs();
   }
 
  public:
