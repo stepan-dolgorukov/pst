@@ -8,9 +8,9 @@
 int main(int nargs, char* args[]) {
 
   try {
-    myls::argparser parser{nargs, args};
-    myls::mode mode{parser()};
-    myls::former former{mode};
+    const myls::argparser parser{nargs, args};
+    const myls::mode mode{parser()};
+    const myls::former former{mode};
 
     if (mode.has_long_listing()) {
       myls::formatter formatter{

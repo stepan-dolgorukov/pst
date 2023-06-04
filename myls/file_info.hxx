@@ -66,8 +66,7 @@ class myls::file_info {
               const std::string& file_name,
               bool human_readable_size);
 
-   decltype(info)
-   operator()(void);
+   decltype(info) operator()(void) const;
 };
 
 #endif

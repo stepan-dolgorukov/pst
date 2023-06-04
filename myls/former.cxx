@@ -9,7 +9,7 @@
 myls::former::former(const myls::mode& mode) : mode{mode} {
 }
 
-myls::former::operator std::vector<myls::file_info>(void) {
+myls::former::operator std::vector<myls::file_info>(void) const {
   std::vector<myls::file_info> info{};
 
   for (auto& name : file_names()) {
@@ -19,7 +19,7 @@ myls::former::operator std::vector<myls::file_info>(void) {
   return info;
 }
 
-std::vector<std::string> myls::former::file_names(void) {
+std::vector<std::string> myls::former::file_names(void) const {
   DIR* directory{opendir(mode.get_directory().c_str())};
   struct dirent* directory_entry{};
 
@@ -50,6 +50,6 @@ std::vector<std::string> myls::former::file_names(void) {
   return file_names;
 }
 
-myls::former::operator std::vector<std::string>() {
+myls::former::operator std::vector<std::string>() const {
   return file_names();
 }

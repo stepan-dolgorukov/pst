@@ -22,7 +22,7 @@ class myls::option_mask {
   public:
     option_mask(void);
     void set(myls::options arg);
-    bool get(myls::options arg);
+    bool get(myls::options arg) const;
 };
 
 #endif

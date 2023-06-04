@@ -15,6 +15,6 @@ void myls::file_owner::fill_group_owner(void) {
   owners.group = stat.st_gid;
 }
 
-auto myls::file_owner::operator()(void) -> decltype(owners) {
+auto myls::file_owner::operator()(void) const -> decltype(owners){
   return owners;
 }

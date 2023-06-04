@@ -19,9 +19,9 @@ class myls::formatter {
 
   std::vector<myls::file_info> info;
 
-  std::string get_format_string(void);
+  std::string get_format_string(void) const;
   std::string format(myls::file_info& fi);
-  std::string prepare(const std::string& name);
+  std::string prepare(const std::string& name) const;
 
   public:
   formatter(const std::vector<myls::file_info>& info, bool has_human_size);

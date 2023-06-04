@@ -9,6 +9,6 @@ void myls::file_hlinks_amnt::fill_amount(void) {
   amount = stat.st_nlink;
 }
 
-std::size_t myls::file_hlinks_amnt::operator()(void) {
+std::size_t myls::file_hlinks_amnt::operator()(void) const {
   return amount;
 }

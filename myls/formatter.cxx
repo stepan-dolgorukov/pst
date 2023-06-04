@@ -51,7 +51,7 @@ std::string myls::formatter::format(myls::file_info& fi) {
   return formatted;
 }
 
-std::string myls::formatter::get_format_string(void) {
+std::string myls::formatter::get_format_string(void) const {
   std::string format{
     "%c%s %" +
     std::to_string(nlinks_max_length) +
@@ -64,7 +64,7 @@ std::string myls::formatter::get_format_string(void) {
   return format;
 }
 
-std::string myls::formatter::prepare(const std::string& name) {
+std::string myls::formatter::prepare(const std::string& name) const {
   if (std::string::npos != name.find(' ')) {
     return '\'' + name + '\'';
   }

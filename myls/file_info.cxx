@@ -8,6 +8,6 @@ myls::file_info::file_info(const std::string& directory_name,
       info{directory_name, file_name} {
 }
 
-auto myls::file_info::operator()(void) -> decltype(info) {
+auto myls::file_info::operator()(void) const -> decltype(info) {
   return info;
 }

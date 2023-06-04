@@ -45,7 +45,7 @@ void myls::file_type::fill_type(void) {
 }
 
 
-char myls::file_type::operator()(void) {
+char myls::file_type::operator()(void) const {
   switch (type) {
     case myls::file_types::directory:
       return 'd';

@@ -13,13 +13,13 @@ namespace myls {
 class myls::former {
   myls::mode mode;
 
-  std::vector<std::string> file_names(void);
+  std::vector<std::string> file_names(void) const;
 
  public:
   former(const myls::mode& mode);
 
-  operator std::vector<myls::file_info>(void);
-  operator std::vector<std::string>(void);
+  operator std::vector<myls::file_info>(void) const;
+  operator std::vector<std::string>(void) const;
 };
 
 #endif

@@ -33,7 +33,7 @@ class myls::file_owner {
 
  public:
   file_owner(const std::string& name);
-  decltype(owners) operator()(void);
+  decltype(owners) operator()(void) const;
 };
 
 #endif

@@ -18,13 +18,13 @@ class myls::file_hlinks_amnt {
   void fill_amount(void);
 
   template<typename Output>
-  friend Output& operator<<(Output& out, myls::file_hlinks_amnt& fha) {
+  friend Output& operator<<(Output& out, const myls::file_hlinks_amnt& fha) {
     return out << fha();
   };
 
  public:
   file_hlinks_amnt(const std::string& name);
-  std::size_t operator()(void);
+  std::size_t operator()(void) const;
 };
 
 #endif

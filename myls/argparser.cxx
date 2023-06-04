@@ -11,7 +11,7 @@ myls::argparser::argparser(int nargs, char* argv[])
   parse_directory();
 };
 
-myls::mode myls::argparser::operator()(void) {
+myls::mode myls::argparser::operator()(void) const {
   return myls::mode(mask, directory);
 };
 

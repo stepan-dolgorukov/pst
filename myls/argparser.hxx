@@ -26,7 +26,7 @@ class myls::argparser {
 
  public:
   argparser(int nargs, char* argv[]);
-  myls::mode operator()(void);
+  myls::mode operator()(void) const;
 
 };
 

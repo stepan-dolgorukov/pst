@@ -25,10 +25,10 @@ class myls::mode {
 
   public:
     mode(myls::option_mask mask, const std::string& directory);
-    bool has_long_listing(void);
-    bool has_reverse_listing(void);
-    bool has_human_size(void);
-    std::string get_directory(void);
+    bool has_long_listing(void) const;
+    bool has_reverse_listing(void) const;
+    bool has_human_size(void) const;
+    std::string get_directory(void) const;
 };
 
 #endif

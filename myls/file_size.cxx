@@ -13,11 +13,11 @@ void myls::file_size::fill_size(void) {
   size = stat.st_size;
 }
 
-std::size_t myls::file_size::operator()(void) {
+std::size_t myls::file_size::operator()(void) const {
   return size;
 }
 
-std::string myls::file_size::operator()(bool human_readable) {
+std::string myls::file_size::operator()(bool human_readable) const {
   if (!human_readable) {
     return std::to_string(operator()());
   }

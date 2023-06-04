@@ -34,7 +34,7 @@ class myls::file_type {
  public:
   file_type(const std::string& name);
 
-  char operator()(void);
+  char operator()(void) const;
 };
 
 template<typename Output>

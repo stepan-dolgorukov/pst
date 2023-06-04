@@ -48,32 +48,32 @@ class myls::file_perm {
   sys_stat stat{};
 
   void fill_permissions(void);
-  bool permission(myls::permissions perm);
+  bool permission(myls::permissions perm) const;
 
   template<typename Output>
-  friend Output& operator<<(Output& out, myls::file_perm& fp);
+  friend Output& operator<<(Output& out, const myls::file_perm& fp);
 
  public:
   file_perm(const std::string& name);
 
-  bool can_owner_read(void);
-  bool can_owner_write(void);
-  bool can_owner_execute(void);
+  bool can_owner_read(void) const;
+  bool can_owner_write(void) const;
+  bool can_owner_execute(void) const;
 
-  bool can_group_read(void);
-  bool can_group_write(void);
-  bool can_group_execute(void);
+  bool can_group_read(void) const;
+  bool can_group_write(void) const;
+  bool can_group_execute(void) const;
 
-  bool can_other_read(void);
-  bool can_other_write(void);
-  bool can_other_execute(void);
+  bool can_other_read(void) const;
+  bool can_other_write(void) const;
+  bool can_other_execute(void) const;
 
-  operator std::string();
-  std::string operator()();
+  operator std::string() const;
+  std::string operator()() const;
 };
 
 template<typename Output>
-Output& myls::operator<<(Output& out, myls::file_perm& fp) {
+Output& myls::operator<<(Output& out, const myls::file_perm& fp) {
   return out << fp();
 }
 

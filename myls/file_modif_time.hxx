@@ -24,8 +24,8 @@ class myls::file_modif_time {
 
  public:
   file_modif_time(const std::string& name);
-  decltype(time) operator()(void);
-  operator std::string(void);
+  decltype(time) operator()(void) const;
+  operator std::string(void) const;
 };
 
 #endif

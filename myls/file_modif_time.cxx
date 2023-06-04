@@ -9,11 +9,11 @@ void myls::file_modif_time::fill_time(void) {
   time = stat.st_mtime;
 }
 
-auto myls::file_modif_time::operator()(void) -> decltype(time) {
+auto myls::file_modif_time::operator()(void) const -> decltype(time) {
   return time;
 }
 
-myls::file_modif_time::operator std::string() {
+myls::file_modif_time::operator std::string() const {
   auto time{operator()()};
   char output_mod_time[64u]{'\0'};
 

@@ -21,50 +21,50 @@ void myls::file_perm::fill_permissions(void) {
   }
 }
 
-bool myls::file_perm::permission(myls::permissions perm) {
+bool myls::file_perm::permission(myls::permissions perm) const {
   using perms_type = decltype(perms);
   perms_type num_perm{static_cast<perms_type>(perm)};
 
   return num_perm == (perms & num_perm);
 }
 
-bool myls::file_perm::can_owner_read(void) {
+bool myls::file_perm::can_owner_read(void) const {
   return permission(myls::permissions::owner_read);
 }
 
-bool myls::file_perm::can_owner_write(void) {
+bool myls::file_perm::can_owner_write(void) const {
   return permission(myls::permissions::owner_write);
 }
 
-bool myls::file_perm::can_owner_execute(void) {
+bool myls::file_perm::can_owner_execute(void) const {
   return permission(myls::permissions::owner_execute);
 }
 
-bool myls::file_perm::can_group_read(void) {
+bool myls::file_perm::can_group_read(void) const {
   return permission(myls::permissions::group_read);
 }
 
-bool myls::file_perm::can_group_write(void) {
+bool myls::file_perm::can_group_write(void) const {
   return permission(myls::permissions::group_write);
 }
 
-bool myls::file_perm::can_group_execute(void) {
+bool myls::file_perm::can_group_execute(void) const {
   return permission(myls::permissions::group_execute);
 }
 
-bool myls::file_perm::can_other_read(void) {
+bool myls::file_perm::can_other_read(void) const {
   return permission(myls::permissions::other_read);
 }
 
-bool myls::file_perm::can_other_write(void) {
+bool myls::file_perm::can_other_write(void) const {
   return permission(myls::permissions::other_write);
 }
 
-bool myls::file_perm::can_other_execute(void) {
+bool myls::file_perm::can_other_execute(void) const {
   return permission(myls::permissions::other_execute);
 }
 
-myls::file_perm::operator std::string(void) {
+myls::file_perm::operator std::string(void) const {
   std::string perms{"---------"};
 
   if (can_owner_read()) {
@@ -106,6 +106,6 @@ myls::file_perm::operator std::string(void) {
   return perms;
 };
 
-std::string myls::file_perm::operator()(void) {
+std::string myls::file_perm::operator()(void) const {
   return static_cast<std::string>(*this);
 }
