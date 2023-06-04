@@ -2,8 +2,8 @@
 #include <array>
 #include <cstddef>
 
-myls::formatter::formatter(const std::vector<myls::file_info>& info, const myls::mode& mode)
-    : info{info}, mode{mode} {
+myls::formatter::formatter(const std::vector<myls::file_info>& info, bool has_human_size)
+    : info{info}, has_human_size{has_human_size} {
 }
 
 std::vector<std::string> myls::formatter::operator()(void) {
@@ -11,7 +11,7 @@ std::vector<std::string> myls::formatter::operator()(void) {
 
   for (auto& fi : info) {
     size_max_length = std::max(size_max_length,
-      fi().size(mode.has_human_size()).length());
+      fi().size(has_human_size).length());
 
     nlinks_max_length = std::max(nlinks_max_length,
       std::to_string(fi().nhlinks()).length());
@@ -44,7 +44,7 @@ std::string myls::formatter::format(myls::file_info& fi) {
     info.nhlinks(),
     user_name.c_str(),
     group_name.c_str(),
-    info.size(mode.has_human_size()).c_str(),
+    info.size(has_human_size).c_str(),
     static_cast<std::string>(info.mod_time).c_str(),
     prepare(info.name).c_str());
 

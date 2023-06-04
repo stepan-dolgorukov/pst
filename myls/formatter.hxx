@@ -15,7 +15,7 @@ class myls::formatter {
   std::size_t size_max_length{};
   std::size_t nlinks_max_length{};
   bool name_with_space{};
-  myls::mode mode;
+  bool has_human_size{};
 
   std::vector<myls::file_info> info;
 
@@ -24,7 +24,7 @@ class myls::formatter {
   std::string prepare(const std::string& name);
 
   public:
-  formatter(const std::vector<myls::file_info>& info, const myls::mode& mode);
+  formatter(const std::vector<myls::file_info>& info, bool has_human_size);
   std::vector<std::string> operator()(void);
 };
 
