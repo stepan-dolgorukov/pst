@@ -11,7 +11,7 @@ std::vector<std::string> myls::formatter::operator()(void) {
 
   for (auto& fi : info) {
     size_max_length = std::max(size_max_length,
-      std::to_string(fi().size()).length());
+      fi().size(human_readable_size).length());
 
     nlinks_max_length = std::max(nlinks_max_length,
       std::to_string(fi().nhlinks()).length());
@@ -50,13 +50,6 @@ std::string myls::formatter::format(myls::file_info& fi) {
 std::string myls::formatter::get_format_string(void) {
   std::string format{"%c%s %" + std::to_string(nlinks_max_length) + "lu "};
 
-  if (human_readable_size) {
-    format += "%s %s %5s %s %s";
-  }
-
-  else {
-    format += "%s %s %" + std::to_string(size_max_length) + "s %s %s";
-  }
-
+  format += "%s %s %" + std::to_string(size_max_length) + "s %s %s";
   return format;
 }
