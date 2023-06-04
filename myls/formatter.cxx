@@ -63,12 +63,47 @@ std::string myls::formatter::format(const myls::file_info& fi) {
 
 std::string myls::formatter::get_format_string(void) const {
   const std::string format{
-    "%c%s %" +
-    std::to_string(nlinks_max_length) +
-    "lu " +
-    "%s %s %" +
-    std::to_string(size_max_length) +
-    "s %s %s"
+     // Тип
+    "%c"
+
+    // Права доступа
+    "%s"
+
+    // Пробел
+    " "
+
+    // Количество hard-ссылок
+    "%" + std::to_string(nlinks_max_length) + "lu" +
+
+    // Пробел
+    " "
+
+    // Пользователь-владелец
+    "%s"
+
+    // Пробел
+    " "
+
+    // Группа владелец
+    "%s"
+
+    // Пробел
+    " "
+
+    // Размер
+    "%" + std::to_string(size_max_length) + "s"
+
+    // Пробел
+    " "
+
+    // Время изменения
+    "%s"
+
+    // Пробел
+    " "
+
+    // Имя
+    "%s"
   };
 
   return format;
