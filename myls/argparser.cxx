@@ -19,7 +19,10 @@ void myls::argparser::parse_actions(void) {
   // Выключение стандартных сообщений при парсинге
   opterr = 0;
 
-  while (-1 != (raw_arg = getopt(raw_args.amount, raw_args.values, arg_format.c_str()))) {
+  while (-1 != (raw_arg = getopt(
+    raw_args.amount,
+    raw_args.values,
+    arg_format.c_str()))) {
 
     switch (raw_arg) {
       case static_cast<signed>(myls::options::long_listing):
