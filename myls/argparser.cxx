@@ -1,4 +1,3 @@
-#include <stdexcept>
 #include <unistd.h>
 #include <string>
 #include "argparser.hxx"
@@ -35,7 +34,7 @@ void myls::argparser::parse_actions(void) {
         message += optopt;
         message += '"';
 
-        throw std::invalid_argument{message};
+        throw message;
     };
   }
 }
