@@ -49,16 +49,7 @@ std::string myls::formatter::format(const myls::file_info& fi) {
     static_cast<std::string>(info.mod_time).c_str(),
     prepare(info.name).c_str());
 
-  std::string formatted{};
-  for (auto ch : arr_formatted) {
-    if ('\0' == ch) {
-      break;
-    }
-
-    formatted += ch;
-  }
-
-  return formatted;
+  return to_string(arr_formatted);
 }
 
 std::string myls::formatter::get_format_string(void) const {
@@ -119,4 +110,19 @@ std::string myls::formatter::prepare(const std::string& name) const {
   }
 
   return name;
+}
+
+template<typename Array>
+std::string myls::formatter::to_string(const Array& chars) {
+  std::string str{};
+
+  for (auto ch: chars) {
+    if ('\0' == ch) {
+      break;
+    }
+
+    str += ch;
+  }
+
+  return str;
 }

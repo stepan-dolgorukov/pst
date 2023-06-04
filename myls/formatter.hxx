@@ -6,6 +6,7 @@
 #include <pwd.h>
 #include <grp.h>
 #include "mode.hxx"
+#include <array>
 
 namespace myls {
   class formatter;
@@ -22,6 +23,9 @@ class myls::formatter {
   std::string get_format_string(void) const;
   std::string format(const myls::file_info& fi);
   std::string prepare(const std::string& name) const;
+
+  template<typename Array>
+  std::string to_string(const Array& chars);
 
   public:
   formatter(const std::vector<myls::file_info>& info, bool has_human_size);
