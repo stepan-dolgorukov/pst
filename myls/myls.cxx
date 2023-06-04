@@ -11,7 +11,7 @@ int main(int nargs, char* args[]) {
     myls::former former{parser()};
 
     auto info{former()};
-    myls::formatter formatter{info, parser().has_human_size()};
+    myls::formatter formatter{info, parser()};
 
     for (const auto& infostr : formatter()) {
       std::cout << infostr << '\n';

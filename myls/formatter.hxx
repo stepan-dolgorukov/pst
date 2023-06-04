@@ -5,16 +5,17 @@
 #include <vector>
 #include <pwd.h>
 #include <grp.h>
+#include "mode.hxx"
 
 namespace myls {
   class formatter;
 }
 
 class myls::formatter {
-  bool human_readable_size{};
   std::size_t size_max_length{};
   std::size_t nlinks_max_length{};
   bool name_with_space{};
+  myls::mode mode;
 
   std::vector<myls::file_info> info;
 
@@ -23,7 +24,7 @@ class myls::formatter {
   std::string prepare(const std::string& name);
 
   public:
-  formatter(const std::vector<myls::file_info>& info, bool human_readable_size);
+  formatter(const std::vector<myls::file_info>& info, const myls::mode& mode);
   std::vector<std::string> operator()(void);
 };
 
