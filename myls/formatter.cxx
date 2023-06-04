@@ -16,7 +16,7 @@ std::vector<std::string> myls::formatter::operator()(void) {
     nlinks_max_length = std::max(nlinks_max_length,
       std::to_string(fi().nhlinks()).length());
 
-    if (std::string::npos != fi().name.find(' ')) {
+    if (!name_with_space && std::string::npos != fi().name.find(' ')) {
       name_with_space = true;
     }
   }
