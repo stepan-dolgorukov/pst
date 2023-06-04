@@ -2,7 +2,6 @@
 #include <unistd.h>
 #include <string>
 #include "argparser.hxx"
-#include <iostream>
 
 myls::argparser::argparser(int nargs, char* argv[])
   : raw_args{nargs, argv} {

@@ -1,7 +1,5 @@
 #include "file_perm.hxx"
 #include <sys/stat.h>
-#include <iostream>
-#include <utility>
 
 myls::file_perm::file_perm(const std::string& name)
     : perms{0b000000000u}, name{name} {

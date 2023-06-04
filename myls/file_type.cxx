@@ -1,5 +1,4 @@
 #include "file_type.hxx"
-#include <iostream>
 #include <sys/types.h>
 
 myls::file_type::file_type(const std::string& name) : type{myls::file_types::regular} {

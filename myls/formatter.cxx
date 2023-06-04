@@ -1,6 +1,5 @@
 #include "formatter.hxx"
 #include <array>
-#include <cstddef>
 
 myls::formatter::formatter(const std::vector<myls::file_info>& info, bool has_human_size)
     : has_human_size{has_human_size}, info{info}  {

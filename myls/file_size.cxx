@@ -1,8 +1,6 @@
 #include "file_size.hxx"
-#include <iostream>
 #include <sys/stat.h>
 #include <cstdint>
-#include <system_error>
 
 myls::file_size::file_size(const std::string &name) {
   int error_status{::stat(name.c_str(), &stat)};

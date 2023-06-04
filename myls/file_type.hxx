@@ -4,7 +4,6 @@
 #include <cstdint>
 #include <string>
 #include <sys/stat.h>
-#include <unordered_map>
 
 namespace myls {
   class file_type;

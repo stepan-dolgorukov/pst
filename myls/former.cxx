@@ -3,8 +3,6 @@
 #include <algorithm>
 #include <bits/types/FILE.h>
 #include <dirent.h>
-#include <exception>
-#include <system_error>
 
 myls::former::former(const myls::mode& mode) : mode{mode} {
 }
