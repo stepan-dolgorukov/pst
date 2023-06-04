@@ -25,16 +25,7 @@ std::vector<std::string> myls::formatter::operator()(void) {
 }
 
 std::string myls::formatter::format(myls::file_info& fi) {
-  std::string formatted(512u, '\0');
-  std::string format{"%c%s %" + std::to_string(nlinks_max_length) + "lu "};
-
-  if (human_readable_size) {
-    format += "%s %s %5s %s %s";
-  }
-
-  else {
-    format += "%s %s %" + std::to_string(size_max_length) + "s %s %s";
-  }
+  std::string formatted(512u, '\0'), format{get_format_string()};
 
   auto info{fi()};
   auto owners{info.owners()};
@@ -54,4 +45,18 @@ std::string myls::formatter::format(myls::file_info& fi) {
     info.name.c_str());
 
   return formatted;
+}
+
+std::string myls::formatter::get_format_string(void) {
+  std::string format{"%c%s %" + std::to_string(nlinks_max_length) + "lu "};
+
+  if (human_readable_size) {
+    format += "%s %s %5s %s %s";
+  }
+
+  else {
+    format += "%s %s %" + std::to_string(size_max_length) + "s %s %s";
+  }
+
+  return format;
 }

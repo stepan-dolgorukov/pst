@@ -16,6 +16,8 @@ class myls::formatter {
   std::size_t nlinks_max_length{};
 
   std::vector<myls::file_info> info;
+
+  std::string get_format_string(void);
   std::string format(myls::file_info& fi);
 
   public:
