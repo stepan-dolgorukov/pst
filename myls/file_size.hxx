@@ -18,7 +18,7 @@ class myls::file_size {
   void fill_size(void);
 
   template<typename Output>
-  friend Output& operator<<(Output& out, myls::file_size fs) {
+  friend Output& operator<<(Output& out, const myls::file_size& fs) {
     return out << fs();
   }
 

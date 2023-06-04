@@ -37,7 +37,7 @@ class myls::file_info {
   } info;
 
   template<typename Output>
-  friend Output& operator<<(Output& out, myls::file_info fi) {
+  friend Output& operator<<(Output& out, const myls::file_info& fi) {
     auto quot_if_has_spaces{[](const std::string& name){
       if (name.npos != name.find(' ')) {
         return '\'' + name + '\'';

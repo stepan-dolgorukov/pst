@@ -23,7 +23,7 @@ class myls::file_owner {
   void fill_group_owner(void);
 
   template<typename Output>
-  friend Output& operator<<(Output& out, myls::file_owner fo) {
+  friend Output& operator<<(Output& out, const myls::file_owner& fo) {
     const std::string
       user_name{getpwuid(fo.owners.user)->pw_name},
       group_name{getgrgid(fo.owners.group)->gr_name};

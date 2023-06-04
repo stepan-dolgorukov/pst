@@ -18,7 +18,7 @@ class myls::file_modif_time {
   void fill_time(void);
 
   template<typename Output>
-  friend Output& operator<<(Output& out, myls::file_modif_time modif_time) {
+  friend Output& operator<<(Output& out, const myls::file_modif_time& modif_time) {
     return out << static_cast<std::string>(modif_time);
   }
 

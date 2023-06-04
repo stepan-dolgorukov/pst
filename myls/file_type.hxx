@@ -29,7 +29,7 @@ class myls::file_type {
   void fill_type(void);
 
   template<typename Output>
-  friend Output& operator<<(Output& out, myls::file_type type);
+  friend Output& operator<<(Output& out, const myls::file_type& type);
 
  public:
   file_type(const std::string& name);
@@ -38,7 +38,7 @@ class myls::file_type {
 };
 
 template<typename Output>
-Output& myls::operator<<(Output& out, myls::file_type type) {
+Output& myls::operator<<(Output& out, const myls::file_type& type) {
   return out << type();
 }
 
