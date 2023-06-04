@@ -18,7 +18,8 @@ class myls::former {
  public:
   former(const myls::mode& mode);
 
-  std::vector<myls::file_info> operator()(void);
+  operator std::vector<myls::file_info>(void);
+  operator std::vector<std::string>(void);
 };
 
 #endif

@@ -3,18 +3,31 @@
 #include "argparser.hxx"
 #include "formatter.hxx"
 #include "former.hxx"
+#include <vector>
 
 int main(int nargs, char* args[]) {
 
   try {
     myls::argparser parser{nargs, args};
-    myls::former former{parser()};
+    myls::mode mode{parser()};
 
-    auto info{former()};
-    myls::formatter formatter{info, parser()};
+    myls::former former{mode};
 
-    for (const auto& infostr : formatter()) {
-      std::cout << infostr << '\n';
+    if (mode.has_long_listing()) {
+      myls::formatter formatter{
+          static_cast<std::vector<myls::file_info>>(former),
+          mode};
+
+      for (const std::string& infostr : formatter()) {
+        std::cout << infostr << '\n';
+      }
+    }
+
+    else {
+      for (const std::string& name :
+           static_cast<std::vector<std::string>>(former)) {
+        std::cout << name << '\n';
+      }
     }
 
   } catch(const std::exception& ex) {

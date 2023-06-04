@@ -1,6 +1,7 @@
 #include "former.hxx"
 #include "file_info.hxx"
 #include <algorithm>
+#include <bits/types/FILE.h>
 #include <dirent.h>
 #include <exception>
 #include <system_error>
@@ -8,7 +9,7 @@
 myls::former::former(const myls::mode& mode) : mode{mode} {
 }
 
-std::vector<myls::file_info> myls::former::operator()(void) {
+myls::former::operator std::vector<myls::file_info>(void) {
   std::vector<myls::file_info> info{};
 
   for (auto& name : file_names()) {
@@ -47,4 +48,8 @@ std::vector<std::string> myls::former::file_names(void) {
   }
 
   return file_names;
+}
+
+myls::former::operator std::vector<std::string>() {
+  return file_names();
 }
