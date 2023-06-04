@@ -11,7 +11,8 @@ myls: myls.o \
 			file_owner.o \
 			file_modif_time.o \
 			file_info.o \
-			former.o
+			former.o \
+			formatter.o
 
 	$(CXX) \
 	myls.o \
@@ -26,6 +27,7 @@ myls: myls.o \
 	file_modif_time.o \
 	file_info.o \
 	former.o \
+	formatter.o \
 	-o myls
 
 myls.o: myls.cxx
@@ -63,3 +65,6 @@ file_info.o: file_info.cxx file_info.hxx
 
 former.o: former.cxx former.hxx
 	$(CXX) -c former.cxx -o former.o
+
+formatter.o: formatter.cxx formatter.hxx
+	$(CXX) -c formatter.cxx -o formatter.o
