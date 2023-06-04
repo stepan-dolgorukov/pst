@@ -28,7 +28,7 @@ std::vector<std::string> myls::formatter::operator()(void) {
   return formatted;
 }
 
-std::string myls::formatter::format(myls::file_info& fi) {
+std::string myls::formatter::format(const myls::file_info& fi) {
   std::array<char, 512u> arr_formatted{};
   std::string format{get_format_string()};
 

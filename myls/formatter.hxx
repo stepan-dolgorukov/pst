@@ -20,7 +20,7 @@ class myls::formatter {
   std::vector<myls::file_info> info;
 
   std::string get_format_string(void) const;
-  std::string format(myls::file_info& fi);
+  std::string format(const myls::file_info& fi);
   std::string prepare(const std::string& name) const;
 
   public:
