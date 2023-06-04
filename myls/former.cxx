@@ -29,7 +29,11 @@ std::vector<std::string> myls::former::file_names(void) {
   std::vector<std::string> file_names{};
 
   while (nullptr != (directory_entry = readdir(directory))) {
-    file_names.emplace_back(directory_entry->d_name);
+    const std::string name{directory_entry->d_name};
+
+    if ("." != name && ".." != name) {
+      file_names.emplace_back(name);
+    }
   }
 
   if (mode.has_reverse_listing()) {
