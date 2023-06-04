@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "argparser.hxx"
+#include "formatter.hxx"
 #include "former.hxx"
 
 int main(int nargs, char* args[]) {
@@ -10,16 +11,17 @@ int main(int nargs, char* args[]) {
     myls::former former{parser()};
 
     auto info{former()};
+    myls::formatter formatter{info, parser().has_human_size()};
 
-    for (auto file_info : former()) {
-      std::cout << file_info << '\n';
+    for (const auto& infostr : formatter()) {
+      std::cout << infostr << '\n';
     }
 
-  } catch(std::exception& ex) {
+  } catch(const std::exception& ex) {
     std::cerr << ex.what() << '\n';
     return EXIT_FAILURE;
 
-  } catch(std::string& ex) {
+  } catch(const std::string& ex) {
     std::cerr << ex << '\n';
     return EXIT_FAILURE;
   }
