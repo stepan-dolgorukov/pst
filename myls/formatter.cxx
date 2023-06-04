@@ -3,7 +3,7 @@
 #include <cstddef>
 
 myls::formatter::formatter(const std::vector<myls::file_info>& info, bool has_human_size)
-    : info{info}, has_human_size{has_human_size} {
+    : has_human_size{has_human_size}, info{info}  {
 }
 
 std::vector<std::string> myls::formatter::operator()(void) {

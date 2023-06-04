@@ -30,7 +30,7 @@ class myls::file_perm {
   std::uint16_t perms : 9u;
   std::string name{};
 
-  std::unordered_map<myls::permissions, int> protection_bits{
+  std::unordered_map<myls::permissions, unsigned> protection_bits{
     {myls::permissions::owner_read, S_IRUSR},
     {myls::permissions::owner_write, S_IWUSR},
     {myls::permissions::owner_execute, S_IXUSR},

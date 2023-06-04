@@ -11,7 +11,7 @@ myls::file_perm::file_perm(const std::string& name)
 }
 
 void myls::file_perm::fill_permissions(void) {
-  for (std::pair<myls::permissions, int> perm_protbits : protection_bits) {
+  for (std::pair<myls::permissions, unsigned> perm_protbits : protection_bits) {
     auto perm{perm_protbits.first};
     auto protbits{perm_protbits.second};
 

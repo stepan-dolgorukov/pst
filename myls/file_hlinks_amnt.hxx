@@ -20,7 +20,7 @@ class myls::file_hlinks_amnt {
   template<typename Output>
   friend Output& operator<<(Output& out, const myls::file_hlinks_amnt& fha) {
     return out << fha();
-  };
+  }
 
  public:
   file_hlinks_amnt(const std::string& name);
