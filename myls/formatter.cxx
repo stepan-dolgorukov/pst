@@ -30,10 +30,10 @@ std::vector<std::string> myls::formatter::operator()(void) {
 
 std::string myls::formatter::format(const myls::file_info& fi) {
   std::array<char, 512u> arr_formatted{};
-  std::string format{get_format_string()};
+  const std::string format{get_format_string()};
 
-  auto info{fi()};
-  auto owners{info.owners()};
+  const auto info{fi()};
+  const auto owners{info.owners()};
 
   const std::string
     user_name{getpwuid(owners.user)->pw_name},
@@ -62,7 +62,7 @@ std::string myls::formatter::format(const myls::file_info& fi) {
 }
 
 std::string myls::formatter::get_format_string(void) const {
-  std::string format{
+  const std::string format{
     "%c%s %" +
     std::to_string(nlinks_max_length) +
     "lu " +
