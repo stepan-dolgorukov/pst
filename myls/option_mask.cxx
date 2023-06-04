@@ -1,6 +1,6 @@
 #include "option_mask.hxx"
 
-myls::option_mask::option_mask(void): mask{0b000u} {
+myls::option_mask::option_mask(void): mask{0u} {
 
 }
 

@@ -9,13 +9,13 @@ namespace myls {
   class file_type;
 
   enum class file_types : std::uint8_t {
-    directory = 0b0000001u,
-    character = 0b0000010u,
-    block = 0b0000100u,
-    regular = 0b0001000u,
-    fifo = 0b0010000u,
-    symbolic_link = 0b0100000u,
-    socket = 0b1000000u
+    directory = 0x1u,
+    character = 0x2u,
+    block = 0x4u,
+    regular = 0x8u,
+    fifo = 0x10u,
+    symbolic_link = 0x20u,
+    socket = 0x40u
   };
 }
 
