@@ -32,7 +32,7 @@ std::string myls::file_size::operator()(bool human_readable) {
     ++suffix;
   }
 
-  if (-1 == suffix) {
+  if (0 == suffix || -1 == suffix) {
     return std::to_string(size);
   }
 
