@@ -12,17 +12,17 @@ namespace myls {
 }
 
 enum class myls::permissions : std::uint16_t {
-  owner_read = 0b100'000'000u,
-  owner_write = 0b010'000'000u,
-  owner_execute = 0b001'000'000u,
+  owner_read = 0b100000000u,
+  owner_write = 0b010000000u,
+  owner_execute = 0b001000000u,
 
-  group_read = 0b000'100'000u,
-  group_write = 0b000'010'000u,
-  group_execute = 0b000'001'000u,
+  group_read = 0b000100000u,
+  group_write = 0b000010000u,
+  group_execute = 0b000001000u,
 
-  other_read = 0b000'000'100u,
-  other_write = 0b000'000'010u,
-  other_execute = 0b000'000'001u
+  other_read = 0b000000100u,
+  other_write = 0b000000010u,
+  other_execute = 0b000000001u
 };
 
 

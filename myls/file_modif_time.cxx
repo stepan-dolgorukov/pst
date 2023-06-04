@@ -17,7 +17,7 @@ myls::file_modif_time::operator std::string() const {
   auto time{operator()()};
   char output_mod_time[64u]{'\0'};
 
-  std::strftime(std::data(output_mod_time), std::size(output_mod_time),
+  std::strftime(output_mod_time, 64u,
                 "%b %e %H:%M", std::localtime(&time));
   return output_mod_time;
 }

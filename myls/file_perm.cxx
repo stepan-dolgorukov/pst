@@ -4,7 +4,7 @@
 #include <utility>
 
 myls::file_perm::file_perm(const std::string& name)
-    : perms{0b000'000'000u}, name{name} {
+    : perms{0b000000000u}, name{name} {
 
   int error_status{::stat(name.c_str(), &stat)};
   fill_permissions();

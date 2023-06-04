@@ -29,7 +29,8 @@ std::vector<std::string> myls::formatter::operator()(void) {
 }
 
 std::string myls::formatter::format(myls::file_info& fi) {
-  std::string formatted(512u, '\0'), format{get_format_string()};
+  std::array<char, 512u> arr_formatted{};
+  std::string format{get_format_string()};
 
   auto info{fi()};
   auto owners{info.owners()};
@@ -38,7 +39,7 @@ std::string myls::formatter::format(myls::file_info& fi) {
     user_name{getpwuid(owners.user)->pw_name},
     group_name{getgrgid(owners.group)->gr_name};
 
-  std::sprintf(formatted.data(), format.c_str(),
+  std::sprintf(arr_formatted.data(), format.c_str(),
     info.type(),
     info.permissions().c_str(),
     info.nhlinks(),
@@ -47,6 +48,15 @@ std::string myls::formatter::format(myls::file_info& fi) {
     info.size(has_human_size).c_str(),
     static_cast<std::string>(info.mod_time).c_str(),
     prepare(info.name).c_str());
+
+  std::string formatted{};
+  for (auto ch : arr_formatted) {
+    if ('\0' == ch) {
+      break;
+    }
+
+    formatted += ch;
+  }
 
   return formatted;
 }

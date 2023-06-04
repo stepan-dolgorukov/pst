@@ -1,5 +1,5 @@
 CXX := /usr/bin/g++
-CXXFLAGS := -pedantic -Wall -Wextra
+CXXFLAGS := -pedantic -Wall -Wextra -std=c++11
 
 myls: myls.o \
 			argparser.o \

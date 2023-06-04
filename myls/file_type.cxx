@@ -2,7 +2,7 @@
 #include <iostream>
 #include <sys/types.h>
 
-myls::file_type::file_type(const std::string& name) : type{0b0000000u} {
+myls::file_type::file_type(const std::string& name) : type{myls::file_types::regular} {
   int error{::stat(name.c_str(), &stat)};
   fill_type();
 };
