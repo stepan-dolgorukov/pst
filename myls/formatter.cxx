@@ -15,6 +15,10 @@ std::vector<std::string> myls::formatter::operator()(void) {
 
     nlinks_max_length = std::max(nlinks_max_length,
       std::to_string(fi().nhlinks()).length());
+
+    if (std::string::npos != fi().name.find(' ')) {
+      name_with_space = true;
+    }
   }
 
   for (auto& fi : info) {
@@ -42,7 +46,7 @@ std::string myls::formatter::format(myls::file_info& fi) {
     group_name.c_str(),
     info.size(human_readable_size).c_str(),
     static_cast<std::string>(info.mod_time).c_str(),
-    info.name.c_str());
+    prepare(info.name).c_str());
 
   return formatted;
 }
@@ -58,4 +62,16 @@ std::string myls::formatter::get_format_string(void) {
   };
 
   return format;
+}
+
+std::string myls::formatter::prepare(const std::string& name) {
+  if (std::string::npos != name.find(' ')) {
+    return '\'' + name + '\'';
+  }
+
+  if (name_with_space) {
+    return ' ' + name;
+  }
+
+  return name;
 }
