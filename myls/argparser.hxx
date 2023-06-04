@@ -3,7 +3,7 @@
 
 #include <string>
 #include "options.hxx"
-#include "option_mask.hxx"
+#include "options_storage.hxx"
 #include "mode.hxx"
 #include <vector>
 
@@ -13,7 +13,7 @@ namespace myls {
 
 class myls::argparser {
   std::string arg_format{"lrh"};
-  myls::option_mask mask{};
+  myls::options_storage mask{};
   std::string directory{"."};
 
   struct {

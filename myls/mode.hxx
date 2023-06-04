@@ -2,7 +2,7 @@
 #define MODE_HXX
 
 #include <cstdint>
-#include "option_mask.hxx"
+#include "options_storage.hxx"
 #include <string>
 
 namespace myls {
@@ -10,7 +10,7 @@ namespace myls {
 }
 
 class myls::mode {
-  myls::option_mask mask{};
+  myls::options_storage mask{};
   std::string directory{"."};
 
   template<typename Output>
@@ -24,7 +24,7 @@ class myls::mode {
   }
 
   public:
-    mode(myls::option_mask mask, const std::string& directory);
+    mode(myls::options_storage mask, const std::string& directory);
     bool has_long_listing(void) const;
     bool has_reverse_listing(void) const;
     bool has_human_size(void) const;

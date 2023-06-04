@@ -1,8 +1,8 @@
 #include "options.hxx"
-#include "option_mask.hxx"
+#include "options_storage.hxx"
 #include "mode.hxx"
 
-myls::mode::mode(const myls::option_mask mask, const std::string& directory) :
+myls::mode::mode(const myls::options_storage mask, const std::string& directory) :
   mask{mask},
   directory{directory} {
 }

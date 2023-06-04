@@ -4,7 +4,7 @@ CXXFLAGS := -pedantic -Wall -Wextra -std=c++11
 myls: myls.o \
 			argparser.o \
 			mode.o \
-			option_mask.o \
+			options_storage.o \
 			file_perm.o \
 			file_type.o \
 			file_size.o \
@@ -19,7 +19,7 @@ myls: myls.o \
 	myls.o \
 	argparser.o \
 	mode.o \
-	option_mask.o \
+	options_storage.o \
 	file_perm.o \
 	file_type.o \
 	file_size.o \
@@ -42,9 +42,9 @@ mode.o: mode.cxx \
 				mode.hxx
 	$(CXX) $(CXXFLAGS) -c mode.cxx -o mode.o
 
-option_mask.o: option_mask.cxx \
-							 option_mask.hxx
-	$(CXX) $(CXXFLAGS) -c option_mask.cxx -o option_mask.o
+options_storage.o: options_storage.cxx \
+									 options_storage.hxx
+	$(CXX) $(CXXFLAGS) -c options_storage.cxx -o options_storage.o
 
 file_perm.o: file_perm.cxx \
 						 file_perm.hxx

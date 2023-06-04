@@ -1,5 +1,5 @@
-#ifndef MODE_MASK_HXX
-#define MODE_MASK_HXX
+#ifndef OPTIONS_STORAGE_HXX
+#define OPTIONS_STORAGE_HXX
 
 #include <cstdint>
 #include <unordered_map>
@@ -7,11 +7,11 @@
 #include "options.hxx"
 
 namespace myls {
-  class option_mask;
+  class options_storage;
 }
 
-class myls::option_mask {
-  std::uint8_t mask: 3u;
+class myls::options_storage {
+  std::uint8_t storage: 3u;
 
   std::unordered_map<myls::options, std::uint8_t> arg_mask{
     {myls::options::long_listing, 0x4u},
@@ -20,7 +20,7 @@ class myls::option_mask {
   };
 
   public:
-    option_mask(void);
+    options_storage(void);
     void set(myls::options arg);
     bool get(myls::options arg) const;
 };
