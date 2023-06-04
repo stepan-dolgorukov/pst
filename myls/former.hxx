@@ -13,6 +13,8 @@ namespace myls {
 class myls::former {
   myls::mode mode;
 
+  std::vector<std::string> file_names(void);
+
  public:
   former(const myls::mode& mode);
 

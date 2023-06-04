@@ -9,6 +9,16 @@ myls::former::former(const myls::mode& mode) : mode{mode} {
 }
 
 std::vector<myls::file_info> myls::former::operator()(void) {
+  std::vector<myls::file_info> info{};
+
+  for (auto& name : file_names()) {
+    info.emplace_back(mode.get_directory(), name, mode.has_human_size());
+  }
+
+  return info;
+}
+
+std::vector<std::string> myls::former::file_names(void) {
   DIR* directory{opendir(mode.get_directory().c_str())};
   struct dirent* directory_entry{};
 
@@ -16,7 +26,6 @@ std::vector<myls::file_info> myls::former::operator()(void) {
     throw "Не удалось открыть каталог " + mode.get_directory();
   }
 
-  std::vector<myls::file_info> info{};
   std::vector<std::string> file_names{};
 
   while (nullptr != (directory_entry = readdir(directory))) {
@@ -33,9 +42,5 @@ std::vector<myls::file_info> myls::former::operator()(void) {
       std::less_equal<std::string>{});
   }
 
-  for (auto& name : file_names) {
-    info.emplace_back(mode.get_directory(), name, mode.has_human_size());
-  }
-
-  return info;
+  return file_names;
 }
